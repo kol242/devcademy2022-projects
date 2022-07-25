@@ -1,0 +1,60 @@
+.navbar {
+    /* Auto layout */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 76px;
+    gap: 241px;
+    /* Black and White/White */
+    background: #FFFFFF;
+    /* Shadow_main */
+    box-shadow: 0px 4px 4px rgba(205, 205, 205, 0.25);
+}
+
+#navbar-logo {
+    /* Typography/H6 */
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 160%;
+    /* identical to box height, or 32px */
+    letter-spacing: 0.15px;
+    /* Black and White/Black */
+    color: #000000;
+}
+
+.navbar-links {
+    display: flex;
+    gap: 48px;
+}
+
+#navbar-links__main {
+    /* Body/Body1-Underline */
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 150%;
+    /* identical to box height, or 24px */
+    letter-spacing: 0.15px;
+    text-decoration-line: underline;
+    /* Teal/Teal-800 */
+    color: #1A3440;
+}
+
+#navbar-links__logout {
+    /* Button/Medium */
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 170%;
+    /* identical to box height, or 24px */
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+    /* Teal/Teal-800 */
+    color: #1A3440;
+    text-decoration: none;
+}

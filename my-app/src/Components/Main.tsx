@@ -1,8 +1,14 @@
 import React from 'react'
+import Header from './Header'
+import Navigation from './Navigation'
+import '../Common/Style/main.css'
 
 const Main = () => {
   return (
-    <div>Main</div>
+    <div className="main-layout">
+        <Navigation />
+        <Header />
+    </div>
   )
 }
 
