@@ -1,9 +1,11 @@
 .place-container {
-    padding: 79px 76px 80px 76px;
+    padding: 0 76px 80px 76px;
+    display: flex;
+    gap: 24px;
 }
 
 #place-container__title {
-    margin: 0 0 54px 0;
+    margin: 54px 0 54px 76px;
     font-family: 'Roboto';
     font-style: normal;
     font-weight: 400;
