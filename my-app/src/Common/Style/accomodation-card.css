@@ -1,0 +1,74 @@
+.acc-container {
+    padding: 79px 76px 0 76px;
+}
+
+#acc-container__title {
+    /* Heading/H4 */
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 34px;
+    line-height: 120%;
+    /* identical to box height, or 41px */
+    letter-spacing: 0.25px;
+    /* Black and White/Black */
+    color: #000000;
+    margin: 0;
+    padding-bottom: 41px;
+}
+
+#acc-container__card {
+    width: 266px;
+}
+
+#acc-container__card--title {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 120%;
+    margin: 0;
+    padding-top: 20px;
+    /* identical to box height, or 24px */
+    letter-spacing: 0.25px;
+    /* Black and White/Black */
+    color: #000000;
+}
+
+#acc-container__card--subtitle {
+    margin: 0;
+    padding-top: 10px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 120%;
+    /* identical to box height, or 18px */
+    letter-spacing: 0.25px;
+    /* Gray/Gray-300 */
+    color: #ADADAD;
+}
+
+#acc-container__card--price {
+    margin: 0;
+    padding-top: 20px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 120%;
+    /* identical to box height, or 18px */
+    letter-spacing: 0.25px;
+    /* Teal/Teal-800 */
+    color: #1A3440;
+}
+
+.acc-container__card--rating {
+    margin: 0;
+    padding-top: 13px;
+}
+
+#acc-container__card--star {
+    margin: 0;
+    padding-right: 6px;
+}

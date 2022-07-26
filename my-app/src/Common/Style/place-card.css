@@ -1,0 +1,86 @@
+.place-container {
+    padding: 79px 76px 80px 76px;
+}
+
+#place-container__title {
+    margin: 0 0 54px 0;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 34px;
+    line-height: 120%;
+    /* identical to box height, or 41px */
+    letter-spacing: 0.25px;
+    /* Black and White/Black */
+    color: #000000;
+}
+
+#place-container__card--title {
+    margin: 20px 0 10px 0;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 120%;
+    /* identical to box height, or 24px */
+    letter-spacing: 0.25px;
+    /* Black and White/Black */
+    color: #000000;
+}
+
+#place-container__card--subtitle {
+    margin: 0 0 20px 0;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 120%;
+    /* identical to box height, or 18px */
+    letter-spacing: 0.25px;
+    /* Gray/Gray-300 */
+    color: #ADADAD;
+}
+
+#place-container__card--detail {
+    margin: 0 0 28px 0;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 120%;
+    /* identical to box height, or 18px */
+    letter-spacing: 0.25px;
+    /* Teal/Teal-800 */
+    color: #1A3440;
+}
+
+.place-container__card--btns {
+    display: flex;
+    gap: 28px;
+}
+
+#btns-edit {
+    border: none;
+    background: none;
+    padding: 0;
+    color: #40E0D0;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 170%;
+    cursor: pointer;
+}
+
+#btns-delete {
+    border: none;
+    background: none;
+    padding: 0;
+    color: #EF6B6B;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 170%;
+    cursor: pointer;
+}
