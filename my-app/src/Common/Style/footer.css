@@ -1,0 +1,21 @@
+.footer-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 27px 90px;
+    gap: 10px;
+    /* Teal/Teal-800 */
+    background: #1A3440;
+}
+
+#footer-container__title {
+    margin: 0;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 133.4%;
+    /* identical to box height, or 32px */
+    /* Black and White/White */
+    color: #FFFFFF;
+}

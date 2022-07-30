@@ -1,0 +1,59 @@
+.city-container {
+    padding: 79px 76px 0 76px;
+}
+
+#city-container__title {
+    /* Heading/H4 */
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 34px;
+    line-height: 120%;
+    /* identical to box height, or 41px */
+    letter-spacing: 0.25px;
+    /* Black and White/Black */
+    color: #000000;
+    padding-bottom: 41px;
+    margin: 0;
+}
+
+.city-container__card {
+    width: 404px;
+    height: 295px;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.3) 0%, rgba(255, 255, 255, 0) 100%);
+    border-radius: 12px;
+    background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.3) 0%, rgba(255, 255, 255, 0) 100%), url('../Images/city-card-london.jpg');
+    background-size: 404px 295px;
+}
+
+#city-container__card--title {
+    padding: 20px 0 0 13px;
+    margin: 0;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 120%;
+    /* identical to box height, or 29px */
+    letter-spacing: 0.25px;
+    /* Black and White/White */
+    color: #FFFFFF;
+    /* Shadow_main */
+    text-shadow: 0px 4px 4px rgba(205, 205, 205, 0.25);
+}
+
+#city-container__card--subtitle {
+    padding: 8px 0 0 13px;
+    margin: 0;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 120%;
+    /* identical to box height, or 24px */
+    letter-spacing: 0.25px;
+    /* Black and White/White */
+    color: #FFFFFF;
+    /* Shadow_main */
+    text-shadow: 0px 4px 4px rgba(205, 205, 205, 0.25);
+}
