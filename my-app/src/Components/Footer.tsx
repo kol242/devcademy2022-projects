@@ -3,8 +3,10 @@ import '../Common/Style/footer.css'
 
 const Footer = () => {
   return (
-    <div className="footer-container">
-      <p id="footer-container__title">Staycation</p>
+    <div className="main-layout__footer">
+      <div className="footer-container">
+        <p id="footer-container__title">Staycation</p>
+      </div>  
     </div>
   )
 }

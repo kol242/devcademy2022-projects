@@ -1,6 +1,7 @@
 import React from 'react'
 import DateIcon from '../../Common/Images/date.svg'
 import RatingStar from '../../Common/Images/star.svg'
+import { useNavigate } from 'react-router-dom';
 
 type Detail = {
     title: string;
@@ -25,6 +26,11 @@ const DetailsView: React.FC<{ details: Detail }> = (props) => {
       elements.push(<img id="acc-container__card--star" src={RatingStar} alt="ratingStar" />);
     } 
     return elements;
+  }
+
+  const navigate = useNavigate()
+  const send = () => {
+      navigate('/booking-flow', { state: props.details })
   }
 
   return (
@@ -52,7 +58,7 @@ const DetailsView: React.FC<{ details: Detail }> = (props) => {
           <h2 id="section2-detail">EUR {props.details.price} per night</h2>
           <h2 id="section2-detail">{props.details.location}</h2>
           <h2 id="section2-detail">{props.details.postalCode}</h2>
-          <button id="section2-btn">BOOK YOUR STAY</button>
+          <button onClick={() => { send() }} id="section2-btn">BOOK YOUR STAY</button>
         </div>
       </div>
   )

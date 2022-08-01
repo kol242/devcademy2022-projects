@@ -1,8 +1,15 @@
 .city-container {
-    padding: 79px 76px 0 76px;
+    padding: 120px 76px 0 76px;
 }
 
-#city-container__title {
+.city-container__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 41px;
+}
+
+#city-container__header--title {
     /* Heading/H4 */
     font-family: 'Roboto';
     font-style: normal;
@@ -13,8 +20,23 @@
     letter-spacing: 0.25px;
     /* Black and White/Black */
     color: #000000;
-    padding-bottom: 41px;
     margin: 0;
+}
+
+#city-container__header--link {
+    display: flex;
+    gap: 12px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 26px;
+    /* identical to box height, or 173% */
+    letter-spacing: 0.46px;
+    text-transform: uppercase;
+    text-decoration: none;
+    /* Mint/Mint-400 */
+    color: #40E0D0;
 }
 
 .city-container__card {

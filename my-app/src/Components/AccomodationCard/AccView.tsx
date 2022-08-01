@@ -1,12 +1,20 @@
 import React from 'react'
-import AccomodationImg from '../../Common/Images/accomodation-card.png'
 import RatingStar from '../../Common/Images/star.svg'
+import { useNavigate } from 'react-router-dom';
 
 type Accomodation = {
     title: string;
-    location: string;
-    price: number;
+    subtitle: string;
+    description: string;
+    type: string;
     categorization: number;
+    personCount: number;
+    largeImg: any;
+    smallImg: any;
+    freeCancelation: boolean;
+    price: number;
+    location: string;
+    postalCode: string;
 }
 
 const AccView: React.FC<{ data: Accomodation }> = (props) => {
@@ -20,10 +28,15 @@ const AccView: React.FC<{ data: Accomodation }> = (props) => {
         return elements;
     }
 
+    const navigate = useNavigate()
+    const send = () => {
+        navigate('/accomodation-details', { state: props.data })
+    }
+
     return (
         <div className="acc-container__card">
-            <img src={AccomodationImg} alt="accomoadtion" />
-            <h1 id="acc-container__card--title">{props.data.title}</h1>
+            <img src={props.data.smallImg} alt="accomoadtion" id="acc-container__card--image"/>
+            <h1 onClick={() => { send() }} id="acc-container__card--title">{props.data.title}</h1>
             <h3 id="acc-container__card--subtitle">{props.data.location}</h3>
             <h2 id="acc-container__card--price">EUR {props.data.price}</h2>
             <div className="acc-container__card--rating">
