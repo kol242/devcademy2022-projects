@@ -1,12 +1,11 @@
 import React, { useRef } from 'react'
-// import AccomodationType from './SearchInputs/AccomodationType'
-// import CheckIn from './SearchInputs/CheckIn'
-// import CheckOut from './SearchInputs/CheckOut'
-// import PeopleCount from './SearchInputs/PeopleCount'
+import AccomodationType from './SearchInputs/AccomodationType'
+import CheckIn from './SearchInputs/CheckIn'
+import CheckOut from './SearchInputs/CheckOut'
+import PeopleCount from './SearchInputs/PeopleCount'
 import '../../Common/Style/advanced-search.css'
 
 const AdvancedSearch = () => {
-  const locationRef = useRef<HTMLSelectElement>(null)
   const checkInRef = useRef<HTMLInputElement>(null)
   const checkOutRef = useRef<HTMLInputElement>(null)
   const peopleRef = useRef<HTMLInputElement>(null)
@@ -15,7 +14,6 @@ const AdvancedSearch = () => {
   const submitHandler = (event: React.FormEvent) => {
     event.preventDefault()
     const searchData = {
-      location: locationRef.current?.value,
       checkInDate: checkInRef.current?.value,
       checkOutDate: checkOutRef.current?.value,
       peopleCount: peopleRef.current?.value,
@@ -26,26 +24,10 @@ const AdvancedSearch = () => {
 
   return (
     <form onSubmit={submitHandler} className="advanced-search-form">
-      <div className="input-wrapper">
-        <label>Check In</label>
-        <input type="date" id="input-date" ref={checkInRef}/>
-      </div>
-      <div className="input-wrapper">
-        <label>Check Out</label>
-        <input type="date" id="input-date" ref={checkOutRef}/>
-      </div>
-      <div className="input-wrapper">
-        <label>How many people?</label>
-        <input type="text" ref={peopleRef}/>
-      </div>
-      <div className="input-wrapper">
-        <label>What type of accomodation?</label>
-        <select name="where" id="where" ref={typeRef}>
-          <option disabled selected></option>
-          <option value="Apartment">Apartment</option>
-          <option value="Hotel">Hotel</option>
-        </select>
-      </div>
+      <CheckIn ref={checkInRef} />
+      <CheckOut ref={checkOutRef} />
+      <PeopleCount ref={peopleRef} />
+      <AccomodationType ref={typeRef} />
       <button id="form-btn">
           Search
       </button>

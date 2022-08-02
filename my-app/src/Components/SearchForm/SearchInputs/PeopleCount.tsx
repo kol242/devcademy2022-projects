@@ -1,12 +1,12 @@
 import React from 'react'
 
-const PeopleCount = () => {
+const PeopleCount = React.forwardRef((props, ref: React.Ref<HTMLInputElement>) => {
   return (
     <div className="input-wrapper">
         <label>How many people?</label>
-        <input type="text" />
+        <input ref={ref} type="text" />
     </div>
   )
-}
+})
 
 export default PeopleCount
