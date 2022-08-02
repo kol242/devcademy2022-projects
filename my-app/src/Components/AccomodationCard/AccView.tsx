@@ -11,6 +11,7 @@ type Accomodation = {
     personCount: number;
     largeImg: any;
     smallImg: any;
+    xsmallImg: any;
     freeCancelation: boolean;
     price: number;
     location: string;

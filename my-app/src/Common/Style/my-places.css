@@ -1,0 +1,19 @@
+.myPlaces-container {
+    padding: 32px 90px;
+    display: flex;
+    flex-direction: column;
+    gap: 39px;
+}
+
+#myPlaces-container--title {
+    margin: 0;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 34px;
+    line-height: 120%;
+    /* identical to box height, or 41px */
+    letter-spacing: 0.25px;
+    /* Black and White/Black */
+    color: #000000;
+}

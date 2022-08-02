@@ -70,6 +70,7 @@
 }
 
 #form-btn {
+    cursor: pointer;
     width: 148px;
     height: 56px;
     font-family: 'Roboto';
@@ -111,7 +112,8 @@ input {
     color: #1A3440;
 }
 
-#input-date {
+#input-date-checkin,
+#input-date-checkout {
     width: 158px;
 }
 

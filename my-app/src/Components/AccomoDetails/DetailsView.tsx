@@ -4,17 +4,19 @@ import RatingStar from '../../Common/Images/star.svg'
 import { useNavigate } from 'react-router-dom';
 
 type Detail = {
-    title: string;
-    subtitle: string;
-    description: string;
-    type: string;
-    categorization: number;
-    personCount: number;
-    imageUrl: string;
-    freeCancelation: boolean;
-    price: number;
-    location: string;
-    postalCode: string;
+  title: string;
+  subtitle: string;
+  description: string;
+  type: string;
+  categorization: number;
+  personCount: number;
+  largeImg: any;
+  smallImg: any;
+  xsmallImg: any;
+  freeCancelation: boolean;
+  price: number;
+  location: string;
+  postalCode: string;
 }
 
 const DetailsView: React.FC<{ details: Detail }> = (props) => {

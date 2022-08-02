@@ -7,6 +7,7 @@ export const accDetails = {
 	"personCount": 2,  
 	"largeImg": require('../Images/details-img.png'),  
 	"smallImg": require('../Images/details-img-small.png'),  
+	"xsmallImg": require('../Images/details-img-xs.png'),  
 	"freeCancelation": true,  
 	"price": 500,  
 	"location": "Mýkonos City",  

@@ -4,7 +4,7 @@ const CheckIn = () => {
   return (
     <div className="input-wrapper">
         <label>Check In</label>
-        <input type="date" id="input-date"/>
+        <input type="date" id="input-date-checkin"/>
     </div>
   )
 }

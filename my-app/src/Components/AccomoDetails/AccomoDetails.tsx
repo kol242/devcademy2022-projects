@@ -7,12 +7,13 @@ import { useLocation } from 'react-router-dom';
 const AccomoDetails = () => {
   const { state }: any = useLocation()
   const data = state
+  
   return (
     <div className="details-container">
       <img id="details-container__image" src={DetailsImg} alt="details-img" />
       <DetailsView details={data}/>
     </div>
-  )
+  )  
 }
 
 export default AccomoDetails
