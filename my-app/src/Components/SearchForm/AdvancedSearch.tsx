@@ -16,7 +16,7 @@ const AdvancedSearch = () => {
     const searchData = {
       checkInDate: checkInRef.current?.value,
       checkOutDate: checkOutRef.current?.value,
-      peopleCount: peopleRef.current?.value,
+      peopleCount: Number(peopleRef.current?.value),
       accomodationType: typeRef.current?.value
     }
     console.log('Search data: ', searchData)
