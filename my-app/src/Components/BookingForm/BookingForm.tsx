@@ -19,7 +19,7 @@ const BookingForm = () => {
       email: emailRef.current?.value,
       guestsCount: Number(gustsRef.current?.value)
     }
-    console.log('Search data: ', formData)
+    console.log('Form data: ', formData)
   }
 
   return (

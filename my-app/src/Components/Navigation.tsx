@@ -12,7 +12,7 @@ const Navigation = () => {
               <Link id="navbar-links__main" to="/places">My places</Link>
               <Link id="navbar-links__main" to="/bookings">My bookings</Link>    
           </div>
-          <a id="navbar-links__logout" href="/">Logout</a>
+          <p id="navbar-links__logout">Logout</p>
       </nav>  
     </div>
   )

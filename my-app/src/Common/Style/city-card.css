@@ -39,6 +39,10 @@
     color: #40E0D0;
 }
 
+#city-container__header--link:hover {
+    text-decoration: underline;
+}
+
 .city-container__card {
     width: 404px;
     height: 295px;

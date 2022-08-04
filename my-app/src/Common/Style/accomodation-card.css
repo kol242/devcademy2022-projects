@@ -39,6 +39,10 @@
     color: #40E0D0;
 }
 
+#acc-container__header--link:hover {
+    text-decoration: underline;
+}
+
 .acc-container__card {
     width: 266px;
 }
