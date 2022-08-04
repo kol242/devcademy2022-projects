@@ -12,7 +12,11 @@ const AccomodationCard = () => {
         <h1 id="acc-container__header--title">Homes guests love</h1>
         <Link id="acc-container__header--link" to="/favorites">View all homes<img src={Arrow} alt="arrow" /></Link>  
       </div>
-      <AccView data={accDetails}/>
+      <div className="acc-container__body">
+        { accDetails.map(acc => 
+          <AccView data={acc}/>  
+        ) }
+      </div>
     </div>
   )
 }

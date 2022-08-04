@@ -1,9 +1,8 @@
 import React, { useRef } from 'react'
 import AccomodationType from './SearchInputs/AccomodationType'
-import CheckIn from './SearchInputs/CheckIn'
-import CheckOut from './SearchInputs/CheckOut'
 import PeopleCount from './SearchInputs/PeopleCount'
 import '../../Common/Style/advanced-search.css'
+import DatePicker from './SearchInputs/DatePicker'
 
 const AdvancedSearch = () => {
   const checkInRef = useRef<HTMLInputElement>(null)
@@ -24,8 +23,8 @@ const AdvancedSearch = () => {
 
   return (
     <form onSubmit={submitHandler} className="advanced-search-form">
-      <CheckIn ref={checkInRef} />
-      <CheckOut ref={checkOutRef} />
+      <DatePicker ref={checkInRef} title={'Check in'} id={'input-date-checkin'}/>
+      <DatePicker ref={checkOutRef} title={'Check out'} id={'input-date-checkout'}/>
       <PeopleCount ref={peopleRef} />
       <AccomodationType ref={typeRef} />
       <button id="form-btn">

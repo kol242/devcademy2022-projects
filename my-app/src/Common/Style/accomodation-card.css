@@ -43,9 +43,10 @@
     text-decoration: underline;
 }
 
-.acc-container__card {
+
+/* .acc-container__card {
     width: 266px;
-}
+} */
 
 #acc-container__card--title {
     cursor: pointer;
@@ -108,4 +109,10 @@
 #acc-container__card--star {
     margin: 0;
     padding-right: 6px;
+}
+
+.acc-container__body {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
 }

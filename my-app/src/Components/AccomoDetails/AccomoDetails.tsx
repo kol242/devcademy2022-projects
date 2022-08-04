@@ -1,17 +1,19 @@
 import React from 'react'
 import '../../Common/Style/accomo-details.css'
-import DetailsImg from '../../Common/Images/details-img.png'
 import DetailsView from './DetailsView'
 import { useLocation } from 'react-router-dom';
 
 const AccomoDetails = () => {
   const { state }: any = useLocation()
-  const data = state
-  
+  const imageStyle = {
+    background: `url(${state.image})`,
+    backgroundSize: 'cover',
+    backgroundPosition: 'center'
+  }
   return (
     <div className="details-container">
-      <img id="details-container__image" src={DetailsImg} alt="details-img" />
-      <DetailsView details={data}/>
+      <section style={imageStyle} id="details-container__image"/>
+      <DetailsView details={state}/>
     </div>
   )  
 }

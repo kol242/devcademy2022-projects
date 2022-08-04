@@ -9,9 +9,7 @@ type Accomodation = {
     type: string;
     categorization: number;
     personCount: number;
-    largeImg: any;
-    smallImg: any;
-    xsmallImg: any;
+    image: any;
     freeCancelation: boolean;
     price: number;
     location: string;
@@ -34,9 +32,15 @@ const AccView: React.FC<{ data: Accomodation }> = (props) => {
         navigate('/accomodation-details', { state: props.data })
     }
 
+    const imageStyle = {
+        background: `linear-gradient(180deg, rgba(0, 0, 0, 0.3) 0%, rgba(255, 255, 255, 0) 100%), url(${props.data.image})`,
+        backgroundSize: '404px 295px',
+        backgroundPosition: 'center'
+      }
+
     return (
         <div className="acc-container__card">
-            <img src={props.data.smallImg} alt="accomoadtion" id="acc-container__card--image"/>
+            <section style={imageStyle} id="acc-container__card--image"/>
             <h1 onClick={() => { send() }} id="acc-container__card--title">{props.data.title}</h1>
             <h3 id="acc-container__card--subtitle">{props.data.location}</h3>
             <h2 id="acc-container__card--price">EUR {props.data.price}</h2>

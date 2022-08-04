@@ -10,9 +10,7 @@ type Detail = {
   type: string;
   categorization: number;
   personCount: number;
-  largeImg: any;
-  smallImg: any;
-  xsmallImg: any;
+  image: any;
   freeCancelation: boolean;
   price: number;
   location: string;
@@ -37,6 +35,7 @@ const DetailsView: React.FC<{ details: Detail }> = (props) => {
 
   return (
     <div className="details-container__body">
+      
         <div className="details-container__body--section1">
           <div className="section1-head">
             <h1 id="section1-head__title">{props.details.title}</h1>

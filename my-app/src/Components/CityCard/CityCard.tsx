@@ -12,7 +12,11 @@ const CityCard = () => {
         <h1 id="city-container__header--title">Popular locations</h1>
         <Link id="city-container__header--link" to="/locations">View all locations<img src={Arrow} alt="arrow" /></Link>  
       </div>
-      <CityView city={CityCardData}/>
+      <div className="city-container__body">
+        { CityCardData.map(location => 
+          <CityView city={location}/>   
+        ) }
+      </div>
     </div>
   )
 }

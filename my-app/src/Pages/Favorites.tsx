@@ -12,7 +12,11 @@ const Favorites = () => {
         <h2 id="favorites-container--subtitle">104 properties</h2>  
       </div>
       <AdvancedSearch />
-      <AccView data={accDetails}/>
+      <div className="favorites-container__body">
+        { accDetails.map(acc => 
+          <AccView data={acc}/>  
+        ) }
+      </div>
     </div>
   )
 }

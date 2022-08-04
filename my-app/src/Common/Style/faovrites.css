@@ -30,3 +30,9 @@
     /* Gray/Gray-500 */
     color: #7C7C7C;
 }
+
+.favorites-container__body {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+}

@@ -1,7 +1,6 @@
 import React, { useRef } from 'react'
 import '../../Common/Style/booking-form.css'
-import CheckIn from '../SearchForm/SearchInputs/CheckIn'
-import CheckOut from '../SearchForm/SearchInputs/CheckOut'
+import DatePicker from '../SearchForm/SearchInputs/DatePicker'
 
 const BookingForm = () => {
   const nameRef = useRef<HTMLInputElement>(null)
@@ -28,8 +27,8 @@ const BookingForm = () => {
         <input id="booking-input" placeholder='Email adress' type="text" ref={emailRef}/>
         <input id="booking-input" placeholder='Number of guests' type="number" ref={gustsRef}/>
         <div className="date-wrapper">
-          <CheckIn ref={checkInRef}/>
-          <CheckOut ref={checkOutRef} />
+          <DatePicker ref={checkInRef} title={'Check in'} id={'input-date-checkin'}/>
+          <DatePicker ref={checkOutRef} title={'Check out'} id={'input-date-checkout'}/>
         </div>
         <button id="booking-btn">Book your stay</button>
     </form>

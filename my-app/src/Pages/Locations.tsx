@@ -9,7 +9,11 @@ const Locations = () => {
     <div className="locations-container">
       <h1 id="locations-container--title">All locations</h1>
       <SimpleSearch />
-      <CityView city={CityCardData}/>
+      <div className="locations-container__body">
+        { CityCardData.map(locations =>
+          <CityView city={locations}/>  
+        ) }  
+      </div>
     </div>
   )
 }
