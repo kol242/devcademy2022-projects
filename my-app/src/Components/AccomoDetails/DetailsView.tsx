@@ -1,19 +1,20 @@
 import React from 'react'
 import DateIcon from '../../Common/Images/date.svg'
 import RatingStar from '../../Common/Images/star.svg'
+import { useNavigate } from 'react-router-dom';
 
 type Detail = {
-    title: string;
-    subtitle: string;
-    description: string;
-    type: string;
-    categorization: number;
-    personCount: number;
-    imageUrl: string;
-    freeCancelation: boolean;
-    price: number;
-    location: string;
-    postalCode: string;
+  title: string;
+  subtitle: string;
+  description: string;
+  type: string;
+  categorization: number;
+  personCount: number;
+  image: any;
+  freeCancelation: boolean;
+  price: number;
+  location: string;
+  postalCode: string;
 }
 
 const DetailsView: React.FC<{ details: Detail }> = (props) => {
@@ -27,8 +28,14 @@ const DetailsView: React.FC<{ details: Detail }> = (props) => {
     return elements;
   }
 
+  const navigate = useNavigate()
+  const send = () => {
+      navigate('/booking-flow', { state: props.details })
+  }
+
   return (
     <div className="details-container__body">
+      
         <div className="details-container__body--section1">
           <div className="section1-head">
             <h1 id="section1-head__title">{props.details.title}</h1>
@@ -52,7 +59,7 @@ const DetailsView: React.FC<{ details: Detail }> = (props) => {
           <h2 id="section2-detail">EUR {props.details.price} per night</h2>
           <h2 id="section2-detail">{props.details.location}</h2>
           <h2 id="section2-detail">{props.details.postalCode}</h2>
-          <button id="section2-btn">BOOK YOUR STAY</button>
+          <button onClick={() => { send() }} id="section2-btn">BOOK YOUR STAY</button>
         </div>
       </div>
   )

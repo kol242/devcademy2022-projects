@@ -1,0 +1,77 @@
+.booking-container {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 32px 90px 0 90px;
+    gap: 40px;
+}
+
+#booking-container__title {
+    margin: 0;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 34px;
+    line-height: 120%;
+    /* identical to box height, or 41px */
+    letter-spacing: 0.25px;
+    /* Black and White/Black */
+    color: #000000;
+}
+
+.booking-container__content {
+    display: flex;
+    justify-content: space-between;
+}
+
+#booking-container__content--form {
+    display: flex;
+    flex-direction: column;
+}
+
+.booking-container__content--card {
+    height: fit-content;
+    width: 618px;
+    display: flex;
+    padding: 16px;
+    gap: 20px;
+    background: #FFFFFF;
+    /* Gray/Gray-100 */
+    border: 1px solid #E3E3E3;
+    border-radius: 8px;
+}
+
+#card-section__title {
+    margin: 0;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 160%;
+    /* identical to box height, or 32px */
+    letter-spacing: 0.15px;
+    /* Black and White/Black */
+    color: #000000;
+}
+
+#card-img {
+    width: 203px;
+    height: 210px;
+}
+
+#card-section__description {
+    margin: 10px 0 0 0;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 150%;
+    /* identical to box height, or 24px */
+    letter-spacing: 0.15px;
+    /* Teal/Teal-800 */
+    color: #1A3440;
+}
+
+.card-stars {
+    padding-bottom: 5px;
+}

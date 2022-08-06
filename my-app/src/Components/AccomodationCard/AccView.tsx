@@ -1,12 +1,19 @@
 import React from 'react'
-import AccomodationImg from '../../Common/Images/accomodation-card.png'
 import RatingStar from '../../Common/Images/star.svg'
+import { useNavigate } from 'react-router-dom';
 
 type Accomodation = {
     title: string;
-    location: string;
-    price: number;
+    subtitle: string;
+    description: string;
+    type: string;
     categorization: number;
+    personCount: number;
+    image: any;
+    freeCancelation: boolean;
+    price: number;
+    location: string;
+    postalCode: string;
 }
 
 const AccView: React.FC<{ data: Accomodation }> = (props) => {
@@ -20,10 +27,21 @@ const AccView: React.FC<{ data: Accomodation }> = (props) => {
         return elements;
     }
 
+    const navigate = useNavigate()
+    const send = () => {
+        navigate('/accomodation-details', { state: props.data })
+    }
+
+    const imageStyle = {
+        background: `linear-gradient(180deg, rgba(0, 0, 0, 0.3) 0%, rgba(255, 255, 255, 0) 100%), url(${props.data.image})`,
+        backgroundSize: '404px 295px',
+        backgroundPosition: 'center'
+      }
+
     return (
         <div className="acc-container__card">
-            <img src={AccomodationImg} alt="accomoadtion" />
-            <h1 id="acc-container__card--title">{props.data.title}</h1>
+            <section style={imageStyle} id="acc-container__card--image"/>
+            <h1 onClick={() => { send() }} id="acc-container__card--title">{props.data.title}</h1>
             <h3 id="acc-container__card--subtitle">{props.data.location}</h3>
             <h2 id="acc-container__card--price">EUR {props.data.price}</h2>
             <div className="acc-container__card--rating">

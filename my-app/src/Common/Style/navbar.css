@@ -20,6 +20,7 @@
     font-weight: 500;
     font-size: 20px;
     line-height: 160%;
+    text-decoration: none;
     /* identical to box height, or 32px */
     letter-spacing: 0.15px;
     /* Black and White/Black */
@@ -46,6 +47,7 @@
 }
 
 #navbar-links__logout {
+    margin: 0;
     /* Button/Medium */
     font-family: 'Roboto';
     font-style: normal;
