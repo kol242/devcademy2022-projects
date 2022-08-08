@@ -19,6 +19,78 @@
     color: #000000;
 }
 
+#long-descr {
+    margin: 10px 0px;
+    padding: 16px 12px;
+    /* Gray/Gray-200 */
+    border: 1px solid #CACACA;
+    border-radius: 4px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 150%;
+    letter-spacing: 0.15px;
+    color: #7C7C7C;
+}
+
+.categorization-section {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    margin: 18px 0;
+}
+
+#input-select {
+    position: relative;
+    padding: 12px;
+    width: 444px;
+    height: 56px;
+    margin: 10px 0;
+    line-height: 6ex;
+    border: 1px solid #CACACA;
+    border-radius: 4px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0.15px;
+    color: #1A3440;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url('../Images/icon.svg');
+    background-repeat: no-repeat;
+    background-position: right 10px top 50%;
+    background-size: 10px;
+}
+
+#input-select:focus,
+#input-select:hover {
+    outline: none;
+    border: 1px solid #EF976B;
+}
+
+#categorization-section__title {
+    margin: 0;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 150%;
+    /* identical to box height, or 24px */
+    letter-spacing: 0.15px;
+    /* Teal/Teal-800 */
+    color: #1A3440;
+}
+
+#long-descr:hover,
+#long-descr:focus {
+    outline: none;
+    border: 1px solid #EF976B;
+}
+
 .booking-container__content {
     display: flex;
     justify-content: space-between;
