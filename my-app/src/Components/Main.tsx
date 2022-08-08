@@ -10,6 +10,7 @@ import MyPlaces from '../Pages/MyPlaces'
 import Favorites from '../Pages/Favorites'
 import AccomoDetails from './AccomoDetails/AccomoDetails'
 import BookingFlow from '../Pages/BookingFlow'
+import AccommodationsByLocation from '../Pages/AccommodationsByLocation.tsx'
 
 const Main = () => {
   return (
@@ -24,6 +25,7 @@ const Main = () => {
             <Route path="/favorites" element={<Favorites />} />
             <Route path="/accomodation-details" element={<AccomoDetails />} />
             <Route path="/booking-flow" element={<BookingFlow />} />
+            <Route path="/accomodation-by-location" element={<AccommodationsByLocation />} />
           </Routes>
         </div>
         <Footer />
