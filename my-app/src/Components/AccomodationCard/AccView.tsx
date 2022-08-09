@@ -16,7 +16,7 @@ type Accomodation = {
     postalCode: string;
 }
 
-const AccView: React.FC<{ data: Accomodation }> = (props) => {
+const AccView: React.FC<{ data: Accomodation, class: string }> = (props) => {
     // function for creating star categorization
     function createStar() {
         const elements = []
@@ -34,13 +34,13 @@ const AccView: React.FC<{ data: Accomodation }> = (props) => {
 
     const imageStyle = {
         background: `linear-gradient(180deg, rgba(0, 0, 0, 0.3) 0%, rgba(255, 255, 255, 0) 100%), url(${props.data.image})`,
-        backgroundSize: '404px 295px',
+        backgroundSize: 'cover',
         backgroundPosition: 'center'
       }
 
     return (
-        <div className="acc-container__card">
-            <section style={imageStyle} id="acc-container__card--image"/>
+        <div className={props.class}>
+            <section onClick={() => { send() }} style={imageStyle} id="acc-container__card--image"/>
             <h1 onClick={() => { send() }} id="acc-container__card--title">{props.data.title}</h1>
             <h3 id="acc-container__card--subtitle">{props.data.location}</h3>
             <h2 id="acc-container__card--price">EUR {props.data.price}</h2>

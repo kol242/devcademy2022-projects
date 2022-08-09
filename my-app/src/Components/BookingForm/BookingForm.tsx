@@ -1,6 +1,16 @@
 import React, { useRef } from 'react'
 import '../../Common/Style/booking-form.css'
 import DatePicker from '../SearchForm/SearchInputs/DatePicker'
+import TextField from '@mui/material/TextField';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+
+const theme = createTheme({
+  palette: {
+      primary: {
+          main: '#EF976B'
+      }
+  }
+})
 
 const BookingForm = () => {
   const nameRef = useRef<HTMLInputElement>(null)
@@ -23,14 +33,16 @@ const BookingForm = () => {
 
   return (
     <form onSubmit={submitHandler} id="booking-container__content--form" action="submit">
-        <input id="booking-input" placeholder='Full name' type="text" ref={nameRef}/>
-        <input id="booking-input" placeholder='Email adress' type="text" ref={emailRef}/>
-        <input id="booking-input" placeholder='Number of guests' type="number" ref={gustsRef}/>
-        <div className="date-wrapper">
-          <DatePicker ref={checkInRef} title={'Check in'} id={'input-date-checkin'}/>
-          <DatePicker ref={checkOutRef} title={'Check out'} id={'input-date-checkout'}/>
-        </div>
-        <button id="booking-btn">Book your stay</button>
+      <ThemeProvider theme={theme}>
+        <TextField id="outlined-basic" label="Full name" variant="outlined" color="primary" inputRef={nameRef}/>  
+        <TextField id="outlined-basic" label="Email adress" variant="outlined" color="primary" inputRef={emailRef}/>  
+        <TextField id="outlined-basic" label="Number of guests" variant="outlined" type="number" color="primary" inputRef={gustsRef}/>  
+      </ThemeProvider>
+      <div className="date-wrapper">
+        <DatePicker ref={checkInRef} title={'Check in'} />
+        <DatePicker ref={checkOutRef} title={'Check out'} />
+      </div>
+      <button id="booking-btn">Book your stay</button>
     </form>
   )
 }

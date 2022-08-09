@@ -30,8 +30,8 @@ const AccomodationSearch = () => {
   return (
     <form onSubmit={submitHandler} className="search-form">
         <WhereInput ref={locationRef} />
-        <DatePicker ref={checkInRef} title={'Check in'} id={'input-date-checkin'}/>
-        <DatePicker ref={checkOutRef} title={'Check out'} id={'input-date-checkout'}/>
+        <DatePicker ref={checkInRef} title={'Check in'} />
+        <DatePicker ref={checkOutRef} title={'Check out'} />
         <PeopleCount ref={peopleRef} />
         <AccomodationType ref={typeRef} />
         <button id="form-btn">

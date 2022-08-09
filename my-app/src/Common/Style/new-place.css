@@ -1,21 +1,39 @@
-#booking-input {
-    width: 418px;
-    padding: 12px;
-}
-
-#booking-checkin,
-#booking-checkout {
-    width: 238px;
-}
-
-.date-wrapper {
+.new-place-container {
     display: flex;
-    gap: 10px;
+    flex-direction: column;
+    margin: 0;
+    padding: 32px 90px 0 90px;
+    gap: 40px;
 }
 
-#booking-btn {
+#new-place-container__title {
+    margin: 0;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 34px;
+    line-height: 120%;
+    /* identical to box height, or 41px */
+    letter-spacing: 0.25px;
+    /* Black and White/Black */
+    color: #000000;
+}
+
+.new-place-container__content {
+    display: flex;
+    justify-content: space-between;
+}
+
+#new-place-container__content--form {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    width: 444px;
+}
+
+#add-btn {
     cursor: pointer;
-    margin-top: 22px;
+    margin-top: 40px;
     align-self: flex-end;
     border: none;
     width: 227px;
@@ -38,6 +56,6 @@
     color: #FFFFFF;
 }
 
-#booking-btn:focus {
+#add-btn:focus {
     background: #32b5a8;
 }

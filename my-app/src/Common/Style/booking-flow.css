@@ -38,10 +38,10 @@
     align-items: center;
     display: flex;
     justify-content: space-between;
-    margin: 18px 0;
 }
 
-#input-select {
+
+/* #input-select {
     position: relative;
     padding: 12px;
     width: 444px;
@@ -70,7 +70,7 @@
 #input-select:hover {
     outline: none;
     border: 1px solid #EF976B;
-}
+} */
 
 #categorization-section__title {
     margin: 0;
@@ -99,6 +99,7 @@
 #booking-container__content--form {
     display: flex;
     flex-direction: column;
+    gap: 28px;
 }
 
 .booking-container__content--card {

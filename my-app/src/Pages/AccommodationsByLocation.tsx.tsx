@@ -17,7 +17,7 @@ const AccommodationsByLocation = () => {
       <AdvancedSearch />
       <div className="favorites-container__body">
         { accDetails.map(acc => 
-          <AccView data={acc}/>  
+          <AccView class='favorites-container__card' data={acc}/>  
         ) }
       </div>
     </div>

@@ -14,7 +14,7 @@ const AccomodationCard = () => {
       </div>
       <div className="acc-container__body">
         { accDetails.map(acc => 
-          <AccView data={acc}/>  
+          <AccView class='acc-container__card' data={acc}/>  
         ) }
       </div>
     </div>

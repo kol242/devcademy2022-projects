@@ -141,3 +141,7 @@
     color: #FFFFFF;
     cursor: pointer;
 }
+
+#section2-btn:focus {
+    background: #32b5a8;
+}
