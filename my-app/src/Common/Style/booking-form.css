@@ -18,7 +18,7 @@
     margin-top: 22px;
     align-self: flex-end;
     border: none;
-    width: 227px;
+    width: fit-content;
     height: 42px;
     padding: 8px 49px 8px 49px;
     /* Mint/Mint-400 */

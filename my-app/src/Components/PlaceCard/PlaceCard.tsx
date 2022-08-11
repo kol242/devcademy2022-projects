@@ -6,7 +6,6 @@ import PlaceView from './PlaceView'
 const PlaceCard = () => {
   return (
     <>
-      <h1 id="place-container__title">My places</h1>
       <PlaceView places={myPlaces} />
     </>
   )
