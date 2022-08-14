@@ -23,8 +23,8 @@ const AdvancedSearch = () => {
 
   return (
     <form onSubmit={submitHandler} className="advanced-search-form">
-      <DatePicker ref={checkInRef} title={'Check in'} id={'input-date-checkin'}/>
-      <DatePicker ref={checkOutRef} title={'Check out'} id={'input-date-checkout'}/>
+      <DatePicker ref={checkInRef} title={'Check in'} />
+      <DatePicker ref={checkOutRef} title={'Check out'} />
       <PeopleCount ref={peopleRef} />
       <AccomodationType ref={typeRef} />
       <button id="form-btn">

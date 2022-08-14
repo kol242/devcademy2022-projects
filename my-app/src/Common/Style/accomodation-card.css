@@ -43,10 +43,9 @@
     text-decoration: underline;
 }
 
-
-/* .acc-container__card {
-    width: 266px;
-} */
+.acc-container__card {
+    width: 419.75px;
+}
 
 #acc-container__card--title {
     cursor: pointer;
@@ -96,9 +95,15 @@
 }
 
 #acc-container__card--image {
-    width: 297px;
+    cursor: pointer;
+    width: 100%;
     height: 266px;
     border-radius: 12px;
+    transition: all 0.5s;
+}
+
+#acc-container__card--image:hover {
+    transform: scale(1.02);
 }
 
 .acc-container__card--rating {

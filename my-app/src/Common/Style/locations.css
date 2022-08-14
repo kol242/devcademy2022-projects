@@ -23,3 +23,13 @@
     flex-wrap: wrap;
     gap: 24px;
 }
+
+.locations-container__card {
+    width: 412.75px;
+    height: 295px;
+    cursor: pointer;
+}
+
+.locations-container__card:nth-child(-n+2) {
+    width: 412.75px;
+}

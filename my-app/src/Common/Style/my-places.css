@@ -5,6 +5,31 @@
     gap: 39px;
 }
 
+.myPlaces-container__header {
+    display: flex;
+    justify-content: space-between;
+}
+
+#myPlaces-container__header--btn {
+    cursor: pointer;
+    border: none;
+    padding: 8px 22px 8px 22px;
+    background: #40E0D0;
+    /* Elevation/2 */
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 170%;
+    /* identical to box height, or 26px */
+    letter-spacing: 0.46px;
+    text-transform: uppercase;
+    /* Black and White/White */
+    color: #FFFFFF;
+    box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px rgba(0, 0, 0, 0.14), 0px 1px 5px rgba(0, 0, 0, 0.12);
+    border-radius: 4px;
+}
+
 #myPlaces-container--title {
     margin: 0;
     font-family: 'Roboto';

@@ -4,8 +4,10 @@ import WhereInput from './SearchInputs/WhereInput'
 import '../../Common/Style/search-form.css'
 import PeopleCount from './SearchInputs/PeopleCount'
 import DatePicker from './SearchInputs/DatePicker'
+import { useNavigate } from 'react-router-dom';
 
 const AccomodationSearch = () => {
+  const navigate = useNavigate()
   const locationRef = useRef<HTMLSelectElement>(null)
   const checkInRef = useRef<HTMLInputElement>(null)
   const checkOutRef = useRef<HTMLInputElement>(null)
@@ -21,14 +23,15 @@ const AccomodationSearch = () => {
       peopleCount: Number(peopleRef.current?.value),
       accomodationType: typeRef.current?.value
     }
+    navigate('/accomodation-by-location', { state: searchData })
     console.log('Search data: ', searchData)
   }
   
   return (
     <form onSubmit={submitHandler} className="search-form">
         <WhereInput ref={locationRef} />
-        <DatePicker ref={checkInRef} title={'Check in'} id={'input-date-checkin'}/>
-        <DatePicker ref={checkOutRef} title={'Check out'} id={'input-date-checkout'}/>
+        <DatePicker ref={checkInRef} title={'Check in'} />
+        <DatePicker ref={checkOutRef} title={'Check out'} />
         <PeopleCount ref={peopleRef} />
         <AccomodationType ref={typeRef} />
         <button id="form-btn">

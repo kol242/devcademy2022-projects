@@ -11,7 +11,7 @@ const Locations = () => {
       <SimpleSearch />
       <div className="locations-container__body">
         { CityCardData.map(locations =>
-          <CityView city={locations}/>  
+          <CityView class='locations-container__card' city={locations}/>  
         ) }  
       </div>
     </div>

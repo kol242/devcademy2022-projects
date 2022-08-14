@@ -5,6 +5,10 @@
     gap: 39px;
 }
 
+.favorites-container__card {
+    width: 412.75px;
+}
+
 #favorites-container--title {
     margin: 0 0 16px 0;
     font-family: 'Roboto';

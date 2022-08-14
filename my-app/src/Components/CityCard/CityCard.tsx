@@ -14,7 +14,7 @@ const CityCard = () => {
       </div>
       <div className="city-container__body">
         { CityCardData.map(location => 
-          <CityView city={location}/>   
+          <CityView class='city-container__card' city={location}/>   
         ) }
       </div>
     </div>

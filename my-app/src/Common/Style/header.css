@@ -91,11 +91,15 @@
     border-radius: 4px;
 }
 
+#form-btn:focus {
+    background: #32b5a8;
+}
+
 .input-wrapper {
     position: relative;
 }
 
-input {
+#text-input {
     padding: 12px 12px 12px 40px;
     width: 242px;
     height: 30px;
@@ -106,25 +110,32 @@ input {
     font-style: normal;
     font-weight: 400;
     font-size: 16px;
-    /* identical to box height, or 150% */
     letter-spacing: 0.15px;
-    /* Teal/Teal-800 */
     color: #1A3440;
 }
 
-#input-date-checkin,
-#input-date-checkout {
+#date-input {
     width: 158px;
     padding: 12px 12px 12px 45px;
+    height: 30px;
+    margin: 10px 0;
+    border: 1px solid #CACACA;
+    border-radius: 4px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    letter-spacing: 0.15px;
+    color: #1A3440;
 }
 
-input:focus,
-input:hover {
+#text-input:focus,
+#date-input:focus {
     outline: none;
     border: 1px solid #EF976B;
 }
 
-select {
+#select-input {
     position: relative;
     padding: 12px 12px 12px 40px;
     width: 242px;
@@ -138,9 +149,7 @@ select {
     font-weight: 400;
     font-size: 16px;
     line-height: 24px;
-    /* identical to box height, or 150% */
     letter-spacing: 0.15px;
-    /* Teal/Teal-800 */
     color: #1A3440;
     appearance: none;
     -webkit-appearance: none;
@@ -151,13 +160,12 @@ select {
     background-size: 10px;
 }
 
-select:focus,
-select:hover {
+#select-input:focus {
     outline: none;
     border: 1px solid #EF976B;
 }
 
-label {
+#input-label {
     position: absolute;
     top: 0.9ex;
     z-index: 1;
@@ -169,11 +177,9 @@ label {
     font-weight: 400;
     font-size: 12px;
     line-height: 12px;
-    /* identical to box height, or 100% */
     display: flex;
     align-items: center;
     letter-spacing: 0.15px;
-    /* Gray/Gray-400 */
     color: #909090;
 }
 
