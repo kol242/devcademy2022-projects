@@ -7,7 +7,7 @@ const ReservationConfirmModal: React.FC<{ modalHandler: any, data: any, accData:
       <div className="modal-container__content">
         <h1 id="content-title">Confirm booking</h1>
         <div className="content-text">
-          <p>{props.data?.fullName}</p>
+          <p>{props.accData.title}</p>
           <p>{props.data?.guestsCount} guests</p>
           <p>{props.data?.checkInDate} - {props.data?.checkOutDate}</p>
           <p>{props.accData.type}</p>
