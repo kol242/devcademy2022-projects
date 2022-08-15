@@ -6,7 +6,7 @@ import RatingStar from '../Common/Images/star.svg'
 
 const BookingFlow = () => {
   const { state }: any = useLocation()
-  // function for creating star categorization
+
   function createStar() {
     const elements = []
     const category = state.categorization
@@ -26,7 +26,7 @@ const BookingFlow = () => {
     <div className="booking-container">
       <h1 id="booking-container__title">Book your stay</h1>
       <div className="booking-container__content">
-        <BookingForm />
+        <BookingForm state={state}/>
         <section className="booking-container__content--card">
           <section style={imageStyle} id="card-img"/>
           <div id="card-section">
