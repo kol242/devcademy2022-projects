@@ -2,6 +2,7 @@ import React from 'react'
 import '../../Common/Style/modal.css'
 
 const MyPlaceDeleteModal: React.FC<{ modalHandler: any, data: any }> = (props) => {
+  console.log(props.data)
   return (
     <div className="modal-container">
       <div className="modal-container__content">

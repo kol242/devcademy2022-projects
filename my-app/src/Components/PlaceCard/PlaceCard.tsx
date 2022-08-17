@@ -1,13 +1,37 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import '../../Common/Style/place-card.css'
-import { myPlaces } from '../../Common/Models/PlacesCard'
 import PlaceView from './PlaceView'
 
 const PlaceCard = () => {
+  const [accomodations, setAccomodations] = useState([])
+
+  const fetchLocations = async () => {
+    try {
+      const response = await fetch(
+        'https://devcademy.herokuapp.com/api/Accomodations'
+      );
+
+      if (!response.ok) {
+        throw new Error('Request failed!');
+      }
+
+      const data = await response.json();
+      setAccomodations(data)
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  useEffect(() => {
+    fetchLocations();
+  }, []);
+
   return (
-    <>
-      <PlaceView places={myPlaces} />
-    </>
+    <div className="place-body">
+      { accomodations.map(place => 
+        <PlaceView data={place}/>  
+      ) }
+    </div>
   )
 }
 
