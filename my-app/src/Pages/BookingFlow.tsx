@@ -17,7 +17,7 @@ const BookingFlow = () => {
   }
 
   const imageStyle = {
-    background: `url(${state.image})`,
+    background: `url(${state.imageUrl})`,
     backgroundSize: 'cover',
     backgroundPosition: 'center'
   }
@@ -35,7 +35,7 @@ const BookingFlow = () => {
               { createStar() }
             </div>
             <p id="card-section__description">{state.type}</p>
-            <p id="card-section__description">{state.location}</p>
+            <p id="card-section__description">{state.location?.name}</p>
             <p id="card-section__description">{state.postalCode}</p>
             <p id="card-section__description">EUR {state.price} per night</p>
           </div>

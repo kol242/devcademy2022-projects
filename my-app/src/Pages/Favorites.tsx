@@ -1,10 +1,31 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import '../Common/Style/faovrites.css'
 import AccView from '../Components/AccomodationCard/AccView'
 import AdvancedSearch from '../Components/SearchForm/AdvancedSearch'
-import { accDetails } from '../Common/Models/AccomodationDetails'
 
 const Favorites = () => {
+  const [accomodations, setAccomodations] = useState([])
+
+  const fetchLocations = async () => {
+    try {
+      const response = await fetch(
+        'https://devcademy.herokuapp.com/api/Accomodations'
+      );
+
+      if (!response.ok) {
+        throw new Error('Request failed!');
+      }
+
+      const data = await response.json();
+      setAccomodations(data)
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  useEffect(() => {
+    fetchLocations();
+  }, []);
   return (
     <div className="favorites-container">
       <div>
@@ -13,7 +34,7 @@ const Favorites = () => {
       </div>
       <AdvancedSearch />
       <div className="favorites-container__body">
-        { accDetails.map(acc => 
+        { accomodations.map(acc => 
           <AccView class='favorites-container__card' data={acc}/>  
         ) }
       </div>

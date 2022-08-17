@@ -1,11 +1,33 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import '../../Common/Style/accomodation-card.css'
-import { accDetails } from '../../Common/Models/AccomodationDetails'
 import AccView from './AccView'
 import { Link } from "react-router-dom";
 import Arrow from '../../Common/Images/Button/Vector.svg'
 
 const AccomodationCard = () => {
+  const [accomodations, setAccomodations] = useState([])
+
+  const fetchLocations = async () => {
+    try {
+      const response = await fetch(
+        'https://devcademy.herokuapp.com/api/Accomodations/recommendation'
+      );
+
+      if (!response.ok) {
+        throw new Error('Request failed!');
+      }
+
+      const data = await response.json();
+      setAccomodations(data)
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  useEffect(() => {
+    fetchLocations();
+  }, []);
+
   return (
     <div className="acc-container">
       <div className="acc-container__header">
@@ -13,7 +35,7 @@ const AccomodationCard = () => {
         <Link id="acc-container__header--link" to="/favorites">View all homes<img src={Arrow} alt="arrow" /></Link>  
       </div>
       <div className="acc-container__body">
-        { accDetails.map(acc => 
+        { accomodations.slice(0, 4).map(acc => 
           <AccView class='acc-container__card' data={acc}/>  
         ) }
       </div>

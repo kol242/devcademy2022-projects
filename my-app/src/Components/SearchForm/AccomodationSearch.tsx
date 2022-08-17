@@ -17,7 +17,9 @@ const AccomodationSearch = () => {
   const submitHandler = (event: React.FormEvent) => {
     event.preventDefault()
     const searchData = {
-      location: locationRef.current?.value,
+      location: locationRef.current?.selectedOptions[0].text,
+      locationID: locationRef.current?.value,
+      properties: Number(locationRef.current?.selectedOptions[0].title),
       checkInDate: checkInRef.current?.value,
       checkOutDate: checkOutRef.current?.value,
       peopleCount: Number(peopleRef.current?.value),

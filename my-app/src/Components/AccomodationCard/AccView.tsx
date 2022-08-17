@@ -3,17 +3,23 @@ import RatingStar from '../../Common/Images/star.svg'
 import { useNavigate } from 'react-router-dom';
 
 type Accomodation = {
-    title: string;
-    subtitle: string;
-    description: string;
-    type: string;
+    title?: string;
+    subtitle?: string;
+    description?: string;
+    type?: string;
     categorization: number;
-    personCount: number;
-    image: any;
-    freeCancelation: boolean;
-    price: number;
-    location: string;
-    postalCode: string;
+    personCount?: number;
+    imageUrl?: string;
+    freeCancelation?: boolean;
+    price?: number;
+    locationID?: string;
+    location?: {
+        name: string,
+        imageUrl: string,
+        postalCode: number,
+        properties: number
+    }
+    postalCode?: number;
 }
 
 const AccView: React.FC<{ data: Accomodation, class: string }> = (props) => {
@@ -33,7 +39,7 @@ const AccView: React.FC<{ data: Accomodation, class: string }> = (props) => {
     }
 
     const imageStyle = {
-        background: `linear-gradient(180deg, rgba(0, 0, 0, 0.3) 0%, rgba(255, 255, 255, 0) 100%), url(${props.data.image})`,
+        background: `linear-gradient(180deg, rgba(0, 0, 0, 0.3) 0%, rgba(255, 255, 255, 0) 100%), url(${props.data.imageUrl})`,
         backgroundSize: 'cover',
         backgroundPosition: 'center'
       }
@@ -42,7 +48,7 @@ const AccView: React.FC<{ data: Accomodation, class: string }> = (props) => {
         <div className={props.class}>
             <section onClick={() => { send() }} style={imageStyle} id="acc-container__card--image"/>
             <h1 onClick={() => { send() }} id="acc-container__card--title">{props.data.title}</h1>
-            <h3 id="acc-container__card--subtitle">{props.data.location}</h3>
+            <h3 id="acc-container__card--subtitle">{props.data.location?.name}</h3>
             <h2 id="acc-container__card--price">EUR {props.data.price}</h2>
             <div className="acc-container__card--rating">
             { createStar() }

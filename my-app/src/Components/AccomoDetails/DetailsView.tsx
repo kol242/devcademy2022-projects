@@ -5,16 +5,22 @@ import { useNavigate } from 'react-router-dom';
 
 type Detail = {
   title: string;
-  subtitle: string;
+  subtitle?: string;
   description: string;
   type: string;
   categorization: number;
-  personCount: number;
-  image: any;
+  personCount?: number;
+  imageUrl: string;
   freeCancelation: boolean;
   price: number;
-  location: string;
-  postalCode: string;
+  locationID: string;
+  location?: {
+    name: string,
+    imageUrl: string,
+    postalCode: number,
+    properties: number
+  }
+  postalCode: number;
 }
 
 const DetailsView: React.FC<{ details: Detail }> = (props) => {
@@ -35,7 +41,6 @@ const DetailsView: React.FC<{ details: Detail }> = (props) => {
 
   return (
     <div className="details-container__body">
-      
         <div className="details-container__body--section1">
           <div className="section1-head">
             <h1 id="section1-head__title">{props.details.title}</h1>
@@ -57,7 +62,7 @@ const DetailsView: React.FC<{ details: Detail }> = (props) => {
           <h2 id="section2-detail">{props.details.personCount} guests</h2>
           <h2 id="section2-detail">{props.details.type}</h2>
           <h2 id="section2-detail">EUR {props.details.price} per night</h2>
-          <h2 id="section2-detail">{props.details.location}</h2>
+          <h2 id="section2-detail">{props.details.location?.name}</h2>
           <h2 id="section2-detail">{props.details.postalCode}</h2>
           <button onClick={() => { send() }} id="section2-btn">BOOK YOUR STAY</button>
         </div>
