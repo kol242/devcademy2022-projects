@@ -43,8 +43,8 @@ const WhereInput = React.forwardRef((props, ref: React.Ref<HTMLSelectElement>) =
     <div className="input-wrapper">
         <label id="input-label">Where are you going?</label>
         <img src={LocationIcon} alt="icon" id="input-icon"/>
-        <select required id="select-input" ref={ref}>
-          <option disabled selected></option>
+        <select defaultValue={'DEFAULT'} required id="select-input" ref={ref}>
+          <option disabled value='DEFAULT'></option>
           { locations.map(item => 
             <option key={item.id} title={item.properties} value={item.id}>{item.name}</option>  
           ) }

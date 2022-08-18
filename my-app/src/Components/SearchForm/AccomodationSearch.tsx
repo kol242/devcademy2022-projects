@@ -26,7 +26,6 @@ const AccomodationSearch = () => {
       accomodationType: typeRef.current?.value
     }
     navigate('/accomodation-by-location', { state: searchData })
-    console.log('Search data: ', searchData)
   }
   
   return (

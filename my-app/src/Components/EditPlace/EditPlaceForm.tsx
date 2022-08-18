@@ -9,6 +9,7 @@ import Cancellation from './Inputs/Cancellation'
 import LocationSelect from './Inputs/LocationSelect'
 import Alert from '../Alert'
 import Snackbar from '@mui/material/Snackbar';
+import { useLocation } from 'react-router-dom'
 
 const theme = createTheme({
     palette: {
@@ -21,11 +22,13 @@ const theme = createTheme({
     }
 })
 
-const NewPlaceForm = () => {
-    const [value, setValue] = React.useState<number | null>(1);
-    const [checked, setChecked] = React.useState(false);
-    const [type, setType] = React.useState('');
-    const [location, setLocation] = React.useState<any>();
+const EditPlaceForm = () => {
+    const { state }: any = useLocation()
+
+    const [value, setValue] = React.useState<number | null>(state.categorization);
+    const [checked, setChecked] = React.useState(state.freeCancelation);
+    const [type, setType] = React.useState(state.type);
+    const [location, setLocation] = React.useState<any>(state.location);
 
     const nameRef = useRef<HTMLInputElement>(null)
     const shortRef = useRef<HTMLInputElement>(null)
@@ -45,11 +48,11 @@ const NewPlaceForm = () => {
         switch (requestState) {
           case 'success':
              setResponse({
-              text: 'Accomodation added successfully!',
+              text: 'Accomodation updated successfully!',
               status: 'success'
              })
             break
-          case 'fail':
+          case 'error':
             setResponse({
               text: 'Something went wrong!',
               status: 'error'
@@ -99,15 +102,16 @@ const NewPlaceForm = () => {
         personCount: 0,
         imageUrl: urlRef.current?.value
       }
-      addAccomodationHandler(formData)
+      console.log(formData)
+      editAccomodationHandler(formData)
     }
 
-    const addAccomodationHandler = async (formData: {}) => {
+    const editAccomodationHandler = async (formData: {}) => {
         try {
             const response = await fetch(
-                'https://devcademy.herokuapp.com/api/Accomodations',
+                `https://devcademy.herokuapp.com/api/Accomodations/${state.id}`,
                 {
-                method: 'POST',
+                method: 'PUT',
                 body: JSON.stringify(formData),
                 headers: {
                     'Content-Type': 'application/json',
@@ -116,6 +120,7 @@ const NewPlaceForm = () => {
             );
         
             if (!response.ok) {
+                handleSnackbar('error')
                 throw new Error('Request failed!')
             }
             handleSnackbar('success')
@@ -127,13 +132,13 @@ const NewPlaceForm = () => {
 
     return (
         <>
-            <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+            <Snackbar open={open} autoHideDuration={6000} onClose={handleClose} anchorOrigin={{vertical: 'top', horizontal: 'right'}}>
                 <Alert onClose={handleClose} severity={response?.status} sx={{ width: '100%' }}>
-                {response?.text}
+                    {response?.text}
                 </Alert>
             </Snackbar>
             <div className="new-place-container">
-                <h1 id="new-place-container__title">Add new place</h1>
+                <h1 id="new-place-container__title">Edit place</h1>
                 <div className="new-place-container__content">
                     <form onSubmit={submitHandler} id="new-place-container__content--form" action="submit">
                         <ThemeProvider theme={theme}>
@@ -141,8 +146,9 @@ const NewPlaceForm = () => {
                                 id="outlined-basic" 
                                 label="Listing name" 
                                 variant="outlined" 
-                                color="primary" 
+                                color="primary"
                                 inputRef={nameRef}
+                                defaultValue={state.title}
                             />    
                             <TextField 
                                 id="outlined-basic" 
@@ -150,6 +156,7 @@ const NewPlaceForm = () => {
                                 variant="outlined" 
                                 color="primary" 
                                 inputRef={shortRef}
+                                defaultValue={state.shortDescription}
                             />    
                             <TextField 
                                 id="outlined-basic" 
@@ -159,11 +166,13 @@ const NewPlaceForm = () => {
                                 variant="outlined" 
                                 color="primary" 
                                 inputRef={longRef}
+                                defaultValue={state.description}
                             />  
-                            <Categorization label='Categorization' handleChange={setValue}/>
+                            <Categorization default={state.categorization} label='Categorization' handleChange={setValue}/>
                             <AccomodationType 
                                 label='Accomodation type' 
                                 type={type} 
+                                default={state.type}
                                 handleTypeChange={handleTypeChange}
                             />
                             <TextField 
@@ -173,6 +182,7 @@ const NewPlaceForm = () => {
                                 type='number' 
                                 color="primary" 
                                 inputRef={capacityRef}
+                                defaultValue={state.personCount}
                             />  
                             <TextField 
                                 id="outlined-basic" 
@@ -181,11 +191,13 @@ const NewPlaceForm = () => {
                                 type='number' 
                                 color="primary" 
                                 inputRef={priceRef}
+                                defaultValue={state.price}
                             />  
                             <LocationSelect 
                                 handleLocationChange={handleLocationChange}
                                 label='Location'
                                 location={location}
+                                default={state.location.name}
                             />
                             <TextField 
                                 id="outlined-basic" 
@@ -193,6 +205,7 @@ const NewPlaceForm = () => {
                                 variant="outlined" 
                                 color="primary" 
                                 inputRef={urlRef}
+                                defaultValue={state.imageUrl}
                             />
                             <Cancellation 
                                 label='Free cancellation available' 
@@ -200,7 +213,7 @@ const NewPlaceForm = () => {
                                 checked={checked} 
                             />
                         </ThemeProvider>
-                        <button id="add-btn">Add new place</button>
+                        <button id="add-btn">Save changes</button>
                     </form>
                 </div>
             </div>
@@ -209,4 +222,4 @@ const NewPlaceForm = () => {
     )
 }
 
-export default NewPlaceForm
+export default EditPlaceForm

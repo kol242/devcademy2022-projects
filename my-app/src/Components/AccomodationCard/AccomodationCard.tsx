@@ -35,8 +35,8 @@ const AccomodationCard = () => {
         <Link id="acc-container__header--link" to="/favorites">View all homes<img src={Arrow} alt="arrow" /></Link>  
       </div>
       <div className="acc-container__body">
-        { accomodations.slice(0, 4).map(acc => 
-          <AccView class='acc-container__card' data={acc}/>  
+        { accomodations.slice(0, 4).map((acc, index) => 
+          <AccView key={index} class='acc-container__card' data={acc}/>  
         ) }
       </div>
     </div>

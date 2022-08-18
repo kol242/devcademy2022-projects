@@ -35,8 +35,8 @@ const CityCard = () => {
         <Link id="city-container__header--link" to="/locations">View all locations<img src={Arrow} alt="arrow" /></Link>  
       </div>
       <div className="city-container__body">
-        { locations.slice(0, 5).map(location => 
-          <CityView class='city-container__card' city={location}/>   
+        { locations.slice(0, 5).map((location, index) => 
+          <CityView key={index} class='city-container__card' city={location}/>   
         ) }
       </div>
     </div>

@@ -12,6 +12,7 @@ import AccomoDetails from './AccomoDetails/AccomoDetails'
 import BookingFlow from '../Pages/BookingFlow'
 import AccommodationsByLocation from '../Pages/AccommodationsByLocation.tsx'
 import NewPlaceForm from './NewPlace/NewPlaceForm'
+import EditPlaceForm from './EditPlace/EditPlaceForm'
 
 const Main = () => {
   return (
@@ -28,6 +29,7 @@ const Main = () => {
             <Route path="/booking-flow" element={<BookingFlow />} />
             <Route path="/accomodation-by-location" element={<AccommodationsByLocation />} />
             <Route path="/new-place" element={<NewPlaceForm />} />
+            <Route path="/edit-place" element={<EditPlaceForm />} />
           </Routes>
         </div>
         <Footer />

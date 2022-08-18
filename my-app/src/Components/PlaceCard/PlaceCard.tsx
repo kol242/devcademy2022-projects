@@ -28,8 +28,8 @@ const PlaceCard = () => {
 
   return (
     <div className="place-body">
-      { accomodations.map(place => 
-        <PlaceView data={place}/>  
+      { accomodations.map((place, index) => 
+        <PlaceView key={index} data={place}/>  
       ) }
     </div>
   )

@@ -7,10 +7,10 @@ const AccomodationType = React.forwardRef((props, ref: React.Ref<HTMLSelectEleme
     <div className="input-wrapper">
         <label id="input-label">What type of accomodation?</label>
         <img src={TypeIcon} alt="icon" id="input-icon"/>
-        <select id="select-input" ref={ref}>
-          <option disabled selected></option>
+        <select defaultValue={'DEFAULT'} id="select-input" ref={ref}>
+          <option disabled value='DEFAULT'></option>
           { types.map((item) => 
-            <option value={item}>{item}</option>
+            <option key={item} value={item}>{item}</option>
           ) }
         </select>
     </div>

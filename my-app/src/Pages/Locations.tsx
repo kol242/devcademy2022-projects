@@ -35,8 +35,8 @@ const Locations = () => {
       <SimpleSearch />
       <div className="locations-container__body">
         { isLoading && <p>Loading...</p> }
-        { locations.map(locations =>
-          <CityView class='locations-container__card' city={locations}/>  
+        { locations.map((locations, index) =>
+          <CityView key={index} class='locations-container__card' city={locations}/>  
         ) }  
       </div>
     </div>

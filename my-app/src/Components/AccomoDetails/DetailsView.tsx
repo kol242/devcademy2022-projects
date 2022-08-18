@@ -10,7 +10,7 @@ const DetailsView: React.FC<{ details: Accomodation }> = (props) => {
     const elements = []
     const category = props.details.categorization
     for(let i = 0; i < category; i++){
-      elements.push(<img id="acc-container__card--star" src={RatingStar} alt="ratingStar" />);
+      elements.push(<img key={i} id="acc-container__card--star" src={RatingStar} alt="ratingStar" />);
     } 
     return elements;
   }

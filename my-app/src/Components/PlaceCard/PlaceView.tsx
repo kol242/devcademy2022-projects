@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { Accomodation } from '../../Common/Models/Accomodation'
 import MyPlaceDeleteModal from '../Modals/MyPlaceDeleteModal'
 
@@ -17,6 +18,10 @@ const PlaceView: React.FC<{ data: Accomodation }> = (props) => {
     backgroundPosition: 'center'
   }
 
+  const navigate = useNavigate()
+  const send = () => {
+      navigate('/edit-place', { state: props.data })
+  }
 
   return (
     <div className="place-container">
@@ -27,7 +32,7 @@ const PlaceView: React.FC<{ data: Accomodation }> = (props) => {
           <h3 id="place-container__card--subtitle">{props.data.location?.name}</h3>
           <h2 id="place-container__card--detail">{props.data.subtitle}</h2>
           <div className="place-container__card--btns">
-              <button id="btns-edit">EDIT</button>
+              <button onClick={() => { send() }} id="btns-edit">EDIT</button>
               <button onClick={() => modalHandler(props.data.id)}id="btns-delete">DELETE PLACE</button>
           </div>
         </div>   

@@ -4,16 +4,16 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
 
-const AccomodationType: React.FC<{ handleTypeChange: any, type: string, label: string }> = (props) => {
+const AccomodationType: React.FC<{ handleTypeChange: any, type: string, label: string, default: string }> = (props) => {
   return (
     <FormControl>
         <InputLabel id="demo-simple-select-label">{props.label}</InputLabel>
         <Select
             labelId="demo-simple-select-label"
             id="demo-simple-select"
-            value={props.type}
             label={props.label}
             onChange={props.handleTypeChange}
+            defaultValue={props.default}
         >
             <MenuItem value='Apartment'>Apartment</MenuItem>
             <MenuItem value='Room'>Room</MenuItem>

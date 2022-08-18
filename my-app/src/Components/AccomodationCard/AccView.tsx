@@ -9,7 +9,7 @@ const AccView: React.FC<{ data: Accomodation, class: string }> = (props) => {
         const elements = []
         const category = props.data.categorization
         for(let i = 0; i < category; i++){
-        elements.push(<img id="acc-container__card--star" src={RatingStar} alt="ratingStar" />);
+        elements.push(<img key={i} id="acc-container__card--star" src={RatingStar} alt="ratingStar" />);
         } 
         return elements;
     }

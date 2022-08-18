@@ -45,11 +45,11 @@ const MyBookings = () => {
       <h1 id="myBookings-container__header">My bookings</h1>
       <h2 id="myBookings-container__header--subtitle">Upcoming bookings</h2>
       <div className="myBookings-container__body">
-        { upcomingReservations.map(booking => <Reservations data={booking} /> )}  
+        { upcomingReservations.map((booking, index) => <Reservations key={index} data={booking} /> )}  
       </div>
       <h2 id="myBookings-container__header--subtitle">Past bookings</h2>
       <div className="myBookings-container__body">
-        { pastReservations.map(booking => <Reservations data={booking} /> )}  
+        { pastReservations.map((booking, index) => <Reservations key={index} data={booking} /> )}  
       </div>
     </div>
   )
