@@ -1,26 +1,7 @@
 import React from 'react'
 import RatingStar from '../../Common/Images/star.svg'
 import { useNavigate } from 'react-router-dom';
-
-type Accomodation = {
-    title?: string;
-    subtitle?: string;
-    description?: string;
-    type?: string;
-    categorization: number;
-    personCount?: number;
-    imageUrl?: string;
-    freeCancelation?: boolean;
-    price?: number;
-    locationID?: string;
-    location?: {
-        name: string,
-        imageUrl: string,
-        postalCode: number,
-        properties: number
-    }
-    postalCode?: number;
-}
+import { Accomodation } from '../../Common/Models/Accomodation';
 
 const AccView: React.FC<{ data: Accomodation, class: string }> = (props) => {
     // function for creating star categorization

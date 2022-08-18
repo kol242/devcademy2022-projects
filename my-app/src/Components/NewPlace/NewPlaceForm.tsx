@@ -6,6 +6,7 @@ import { SelectChangeEvent } from '@mui/material/Select';
 import Categorization from './Inputs/Categorization'
 import AccomodationType from './Inputs/AccomodationType'
 import Cancellation from './Inputs/Cancellation'
+import LocationSelect from './Inputs/LocationSelect'
 
 const theme = createTheme({
     palette: {
@@ -22,13 +23,12 @@ const NewPlaceForm = () => {
     const [value, setValue] = React.useState<number | null>(1);
     const [checked, setChecked] = React.useState(false);
     const [type, setType] = React.useState('');
+    const [location, setLocation] = React.useState<any>();
     const nameRef = useRef<HTMLInputElement>(null)
     const shortRef = useRef<HTMLInputElement>(null)
     const longRef = useRef<HTMLTextAreaElement>(null)
     const capacityRef = useRef<HTMLInputElement>(null)
     const priceRef = useRef<HTMLInputElement>(null)
-    const locationRef = useRef<HTMLInputElement>(null)
-    const postalRef = useRef<HTMLInputElement>(null)
     const urlRef = useRef<HTMLInputElement>(null)
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -38,24 +38,60 @@ const NewPlaceForm = () => {
     const handleTypeChange = (event: SelectChangeEvent) => {
         setType(event.target.value as string);
     };
+
+    const handleLocationChange = (event: SelectChangeEvent) => {
+        setLocation(event.target.value);
+    };
     
     const submitHandler = (event: React.FormEvent) => {
       event.preventDefault()
       const formData = {
-        listingName: nameRef.current?.value,
-        shortDescr: shortRef.current?.value,
-        longDescr: longRef.current?.value,
-        category: Number(value),
+        title: nameRef.current?.value,
+        subtitle: 'test',
+        shortDescription: shortRef.current?.value,
+        description: longRef.current?.value,
+        categorization: Number(value),
         type: type,
         capacity: Number(capacityRef.current?.value),
         price: Number(priceRef.current?.value),
-        location: locationRef.current?.value,
-        postal: postalRef.current?.value,
-        url: urlRef.current?.value,
-        cancellation: checked
+        locationID: location?.id,
+        location: {
+            name: location?.name,
+            postalCode: Number(location?.postalCode),
+            imageUrl: location?.imageUrl,
+            properties: Number(location?.properties)
+        },
+        freeCancellation: checked,
+        personCount: 0,
+        imageUrl: urlRef.current?.value
       }
-      console.log('Form data: ', formData)
+      enterTaskHandler(formData)
     }
+
+    const enterTaskHandler = async (formData: {}) => {
+        try {
+          const response = await fetch(
+            'https://devcademy.herokuapp.com/api/Accomodations',
+            {
+              method: 'POST',
+              body: JSON.stringify(formData),
+              headers: {
+                'Content-Type': 'application/json',
+              },
+            }
+          );
+    
+          if (!response.ok) {
+            throw new Error('Request failed!');
+          }
+    
+          const data = await response.json();
+          console.log(data)
+    
+        } catch (err) {
+            console.error(err);
+        }
+      };
 
     return (
         <div className="new-place-container">
@@ -108,20 +144,11 @@ const NewPlaceForm = () => {
                             color="primary" 
                             inputRef={priceRef}
                         />  
-                        <TextField 
-                            id="outlined-basic" 
-                            label="Location" 
-                            variant="outlined" 
-                            color="primary" 
-                            inputRef={locationRef}
-                        />  
-                        <TextField 
-                            id="outlined-basic" 
-                            label="Postal code" 
-                            variant="outlined" 
-                            color="primary" 
-                            inputRef={postalRef}
-                        />  
+                        <LocationSelect 
+                            handleLocationChange={handleLocationChange}
+                            label='Location'
+                            location={location}
+                        />
                         <TextField 
                             id="outlined-basic" 
                             label="Listing image URL" 
@@ -135,6 +162,8 @@ const NewPlaceForm = () => {
                             checked={checked} 
                         />
                     </ThemeProvider>
+                    <p id="info-success">New place added!</p>
+                    <p id="info-fail">Something went wrong...</p>
                     <button id="add-btn">Add new place</button>
                 </form>
             </div>

@@ -1,11 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import LocationIcon from '../../../Common/Images/location-icon.svg'
+import { Location } from '../../../Common/Models/Place'
 
-interface Location {
-    id: any;
-    name: any;
-    properties: any;
-  }
 
 const WhereInput = React.forwardRef((props, ref: React.Ref<HTMLSelectElement>) => {
  

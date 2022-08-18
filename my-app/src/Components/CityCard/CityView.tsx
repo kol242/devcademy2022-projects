@@ -1,14 +1,7 @@
 import React from 'react'
+import { Place } from '../../Common/Models/Place'
 
-type City = {
-  id: string,
-  name: string;
-  properties: number;
-  postalCode: number;
-  imageUrl: any;
-}
-
-const CityView: React.FC<{ city: City, class: string }> = (props) => {
+const CityView: React.FC<{ city: Place, class: string }> = (props) => {
   const imageStyle = {
     background: `linear-gradient(180deg, rgba(0, 0, 0, 0.3) 0%, rgba(255, 255, 255, 0) 100%), url(${props.city.imageUrl})`,
     backgroundSize: 'cover',

@@ -2,28 +2,9 @@ import React from 'react'
 import DateIcon from '../../Common/Images/date.svg'
 import RatingStar from '../../Common/Images/star.svg'
 import { useNavigate } from 'react-router-dom';
+import { Accomodation } from '../../Common/Models/Accomodation'
 
-type Detail = {
-  title: string;
-  subtitle?: string;
-  description: string;
-  type: string;
-  categorization: number;
-  personCount?: number;
-  imageUrl: string;
-  freeCancelation: boolean;
-  price: number;
-  locationID: string;
-  location?: {
-    name: string,
-    imageUrl: string,
-    postalCode: number,
-    properties: number
-  }
-  postalCode: number;
-}
-
-const DetailsView: React.FC<{ details: Detail }> = (props) => {
+const DetailsView: React.FC<{ details: Accomodation }> = (props) => {
     // function for creating star categorization
   function createStar() {
     const elements = []

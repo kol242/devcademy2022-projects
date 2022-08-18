@@ -1,26 +1,6 @@
 import React, { useState } from 'react'
+import { Accomodation } from '../../Common/Models/Accomodation'
 import MyPlaceDeleteModal from '../Modals/MyPlaceDeleteModal'
-
-type Accomodation = {
-  id?: string;
-  title?: string;
-  subtitle?: string;
-  description?: string;
-  type?: string;
-  categorization: number;
-  personCount?: number;
-  imageUrl?: string;
-  freeCancelation?: boolean;
-  price?: number;
-  locationID?: string;
-  location?: {
-      name: string,
-      imageUrl: string,
-      postalCode: number,
-      properties: number
-  }
-  postalCode?: number;
-}
 
 const PlaceView: React.FC<{ data: Accomodation }> = (props) => {
   const [modal, setModal] = useState(false);

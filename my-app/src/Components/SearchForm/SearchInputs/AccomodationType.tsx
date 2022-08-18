@@ -2,20 +2,7 @@ import React from 'react'
 import TypeIcon from '../../../Common/Images/type-icon.svg'
 
 const AccomodationType = React.forwardRef((props, ref: React.Ref<HTMLSelectElement>) => {
-  const types = [
-    {
-      type: 'Apartment',
-      key: 'apartment'
-    },
-    {
-      type: 'Room',
-      key: 'room'
-    },
-    {
-      type: 'Mobile home',
-      key: 'mobile'
-    }
-  ]
+  const types = ['Suite', 'Room', 'MobileHome', 'Apartment']
   return (
     <div className="input-wrapper">
         <label id="input-label">What type of accomodation?</label>
@@ -23,7 +10,7 @@ const AccomodationType = React.forwardRef((props, ref: React.Ref<HTMLSelectEleme
         <select id="select-input" ref={ref}>
           <option disabled selected></option>
           { types.map((item) => 
-            <option value={item.key}>{item.type}</option>
+            <option value={item}>{item}</option>
           ) }
         </select>
     </div>
