@@ -22,8 +22,8 @@ const theme = createTheme({
 })
 
 const NewPlaceForm = () => {
-    const [value, setValue] = React.useState<number | null>(1);
-    const [checked, setChecked] = React.useState(false);
+    const [value, setValue] = React.useState<number | null>(0);
+    const [checked, setChecked] = React.useState(true);
     const [type, setType] = React.useState('');
     const [location, setLocation] = React.useState<any>();
 
@@ -37,33 +37,40 @@ const NewPlaceForm = () => {
     type Response = {
         text: string,
         status: "success" | "error" | "info" | "warning"
-      }
-      const [response, setResponse] = React.useState<Response>();
-      const [open, setOpen] = React.useState(false);
-    
-      const handleSnackbar = (requestState: string) => {
+    }
+
+    const [response, setResponse] = React.useState<Response>();
+    const [open, setOpen] = React.useState(false);
+
+    const handleSnackbar = (requestState: string) => {
         switch (requestState) {
-          case 'success':
-             setResponse({
-              text: 'Accomodation added successfully!',
-              status: 'success'
-             })
-            break
-          case 'fail':
+            case 'success':
+                setResponse({
+                text: 'Accomodation added successfully!',
+                status: 'success'
+                })
+                break
+            case 'fail':
             setResponse({
-              text: 'Something went wrong!',
-              status: 'error'
+                text: 'Something went wrong!',
+                status: 'error'
             })
-        }
+                break
+            case 'warning':
+                setResponse({
+                    text: 'Form is not validated',
+                    status: 'warning'
+                })
+            }
         setOpen(true)
-      };
+    };
     
-      const handleClose = (event?: React.SyntheticEvent | Event, reason?: string) => {
-        if (reason === 'clickaway') {
-          return;
-        }
-        setOpen(false);
-      };
+    const handleClose = (event?: React.SyntheticEvent | Event, reason?: string) => {
+    if (reason === 'clickaway') {
+        return;
+    }
+    setOpen(false);
+    };
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setChecked(event.target.checked);
@@ -78,28 +85,37 @@ const NewPlaceForm = () => {
     };
     
     const submitHandler = (event: React.FormEvent) => {
-      event.preventDefault()
-      const formData = {
-        title: nameRef.current?.value,
-        subtitle: 'test',
-        shortDescription: shortRef.current?.value,
-        description: longRef.current?.value,
-        categorization: Number(value),
-        type: type,
-        capacity: Number(capacityRef.current?.value),
-        price: Number(priceRef.current?.value),
-        locationID: location?.id,
-        location: {
-            name: location?.name,
-            postalCode: Number(location?.postalCode),
-            imageUrl: location?.imageUrl,
-            properties: Number(location?.properties)
+        event.preventDefault()
+        const formData = {
+            title: nameRef.current?.value,
+            subtitle: 'test',
+            shortDescription: shortRef.current?.value,
+            description: longRef.current?.value,
+            categorization: Number(value),
+            type: type,
+            capacity: Number(capacityRef.current?.value),
+            price: Number(priceRef.current?.value),
+            locationID: location?.id,
+            location: {
+                name: location?.name,
+                postalCode: Number(location?.postalCode),
+                imageUrl: location?.imageUrl,
+                properties: Number(location?.properties)
         },
-        freeCancellation: checked,
-        personCount: 0,
-        imageUrl: urlRef.current?.value
-      }
-      addAccomodationHandler(formData)
+            freeCancellation: checked,
+            personCount: 0,
+            imageUrl: urlRef.current?.value
+        }
+        categoryValidation(formData.categorization)
+        if ( !titleError && !capacityError && !subtitleError && !categoryError ) {
+            addAccomodationHandler(formData)
+            const form = document.getElementById('new-place-container__content--form') as HTMLFormElement;
+            setLocation('')
+            setType('')
+            form.reset()
+        } else {
+            handleSnackbar('warning')
+        }
     }
 
     const addAccomodationHandler = async (formData: {}) => {
@@ -107,27 +123,79 @@ const NewPlaceForm = () => {
             const response = await fetch(
                 'https://devcademy.herokuapp.com/api/Accomodations',
                 {
-                method: 'POST',
-                body: JSON.stringify(formData),
-                headers: {
-                    'Content-Type': 'application/json',
-                },
+                    method: 'POST',
+                    body: JSON.stringify(formData),
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
                 }
-            );
-        
+            )
             if (!response.ok) {
+                handleSnackbar('fail')
                 throw new Error('Request failed!')
             }
             handleSnackbar('success')
         } catch (err) {
             console.error(err)
-            handleSnackbar('error')
+            handleSnackbar('fail')
         }
-      }
+    }
+
+    // ============================================== VALIDATIONS ==========================================================
+
+    const [titleError, setTitleError] = React.useState(false);
+    const [titleValid, setIsTitleValid] = React.useState('');
+
+    function titleValidation(event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
+        if (event.target.value.length > 100) {
+            setTitleError(true)
+            setIsTitleValid('Maximum 100 characters!')
+        } else {
+            setIsTitleValid('')
+            setTitleError(false)
+        }
+    }
+
+    const [subtitleError, setSubitleError] = React.useState(false);
+    const [subtitleValid, setIsSubitleValid] = React.useState('');
+
+    function subtitleValidation(event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
+        if (event.target.value.length > 200) {
+            setSubitleError(true)
+            setIsSubitleValid('Maximum 200 characters!')
+        } else {
+            setIsSubitleValid('')
+            setSubitleError(false)
+        }
+    }
+
+    const [capacityError, setCapacityError] = React.useState(false);
+    const [capacityValid, setIsCapacityValid] = React.useState('');
+
+    function capacityValidation(event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
+        const number = Number(event.target.value)
+        if (number < 1) {
+            setCapacityError(true)
+            setIsCapacityValid('Minimum capacity is 1!')
+        } else {
+            setIsCapacityValid('')
+            setCapacityError(false)
+        }
+    }
+
+    const [categoryError, setCategoryError] = React.useState(false);
+
+    function categoryValidation(value: number) {
+        if (value < 1) {
+            setCategoryError(true)
+        } else {
+            setCategoryError(false)
+        }
+    }
 
     return (
         <>
-            <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+            <Snackbar open={open} autoHideDuration={6000} onClose={handleClose} anchorOrigin={{vertical: 'top', horizontal: 'right'}}>
                 <Alert onClose={handleClose} severity={response?.status} sx={{ width: '100%' }}>
                 {response?.text}
                 </Alert>
@@ -138,13 +206,20 @@ const NewPlaceForm = () => {
                     <form onSubmit={submitHandler} id="new-place-container__content--form" action="submit">
                         <ThemeProvider theme={theme}>
                             <TextField 
+                                required
+                                error={titleError}
                                 id="outlined-basic" 
                                 label="Listing name" 
                                 variant="outlined" 
                                 color="primary" 
                                 inputRef={nameRef}
+                                onChange={(event) => titleValidation(event)}
+                                helperText={titleValid}
                             />    
                             <TextField 
+                                error={subtitleError}
+                                helperText={subtitleValid}
+                                onChange={(event) => subtitleValidation(event)}
                                 id="outlined-basic" 
                                 label="Short description" 
                                 variant="outlined" 
@@ -159,14 +234,20 @@ const NewPlaceForm = () => {
                                 variant="outlined" 
                                 color="primary" 
                                 inputRef={longRef}
-                            />  
-                            <Categorization label='Categorization' handleChange={setValue}/>
+                            /> 
+                            <div>
+                                <Categorization label='Categorization' handleChange={setValue}/>
+                                { categoryError && <p style={{color: 'red', margin: 0, fontSize: '14px'}}>Categorization is required!</p>}    
+                            </div> 
                             <AccomodationType 
                                 label='Accomodation type' 
                                 type={type} 
                                 handleTypeChange={handleTypeChange}
                             />
-                            <TextField 
+                            <TextField
+                                error={capacityError}
+                                helperText={capacityValid}
+                                onChange={(event) => capacityValidation(event)}
                                 id="outlined-basic" 
                                 label="Capacity"
                                 variant="outlined" 
@@ -175,6 +256,7 @@ const NewPlaceForm = () => {
                                 inputRef={capacityRef}
                             />  
                             <TextField 
+                                required
                                 id="outlined-basic" 
                                 label="Price" 
                                 variant="outlined" 

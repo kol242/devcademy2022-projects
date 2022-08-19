@@ -12,6 +12,7 @@ const Categorization: React.FC<{ handleChange: Function, label: string }> = (pro
                 props.handleChange(newValue);
             }}
             max={5}
+            defaultValue={0}
         />
     </div>  
   )

@@ -34,8 +34,8 @@ const Favorites = () => {
       </div>
       <AdvancedSearch />
       <div className="favorites-container__body">
-        { accomodations.map(acc => 
-          <AccView class='favorites-container__card' data={acc}/>  
+        { accomodations.map((acc, index) => 
+          <AccView key={index} class='favorites-container__card' data={acc}/>  
         ) }
       </div>
     </div>

@@ -31,12 +31,13 @@ const ReservationConfirmModal: React.FC<{
       );
 
       if (!response.ok) {
+        props.handleSnackbar('fail')
         throw new Error('Request failed!')
       }
       props.handleSnackbar('success')
     } catch (err) {
       console.error(err);
-      props.handleSnackbar('error')
+      props.handleSnackbar('fail')
     }
     props.modalHandler()
   }

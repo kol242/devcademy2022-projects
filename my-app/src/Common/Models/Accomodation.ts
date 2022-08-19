@@ -1,5 +1,6 @@
 export type Accomodation = {
     id: string,
+    capacity: number,
     title?: string;
     subtitle?: string;
     description?: string;

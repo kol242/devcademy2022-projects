@@ -4,6 +4,7 @@ export type Reservation = {
     accomodationId: string,
     accomodation: {
       id: string,
+      capacity: number,
       title?: string;
       subtitle?: string;
       description?: string;

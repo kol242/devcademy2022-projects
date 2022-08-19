@@ -36,9 +36,10 @@ const LocationSelect: React.FC<{ handleLocationChange: any, location: object, la
         <Select
           labelId="demo-simple-select-label"
           id="demo-simple-select"
-          value={props.location}
+          value={props.location || ""}
           label={props.label}
           onChange={props.handleLocationChange}
+          required
         >
           { locations.map(item => <MenuItem key={item.id} value={item} >{item.name}</MenuItem>)}
         </Select>    
