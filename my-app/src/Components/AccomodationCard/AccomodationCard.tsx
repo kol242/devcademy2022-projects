@@ -10,14 +10,9 @@ const AccomodationCard = () => {
 
   useEffect(() => {
     fetchAccomodations({ 
-      url: 'https://devcademy.herokuapp.com/api/Accomodations',
-      headers: {},
-      method: 'GET',
-      body: null,
-      onSuccess: null,
-      onFail: null 
-    });
-  }, [fetchAccomodations]);
+      url: 'https://devcademy.herokuapp.com/api/Accomodations'
+    })
+  }, [fetchAccomodations])
 
   return (
     <div className="acc-container">

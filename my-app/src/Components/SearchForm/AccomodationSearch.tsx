@@ -22,20 +22,10 @@ const AccomodationSearch = () => {
   
   useEffect(() => {
     fetchReservations({ 
-      url: 'https://devcademy.herokuapp.com/api/Reservation',
-      headers: {},
-      method: 'GET',
-      body: null,
-      onSuccess: null,
-      onFail: null  
+      url: 'https://devcademy.herokuapp.com/api/Reservation'
     })
     fetchAccomodations({ 
-      url: 'https://devcademy.herokuapp.com/api/Accomodations',
-      headers: {},
-      method: 'GET',
-      body: null,
-      onSuccess: null,
-      onFail: null  
+      url: 'https://devcademy.herokuapp.com/api/Accomodations'
     })
   }, [fetchReservations, fetchAccomodations])
 

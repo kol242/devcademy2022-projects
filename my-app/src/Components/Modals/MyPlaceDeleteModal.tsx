@@ -1,19 +1,18 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 import '../../Common/Style/modal.css'
 import useHttp from '../../Hooks/use-http'
 
 const MyPlaceDeleteModal: React.FC<{ modalHandler: any, data: any }> = (props) => {
   const { sendRequest: deleteAccomodation } = useHttp()
+  const navigate = useNavigate()
 
   const deleteHandler = () => {
     deleteAccomodation({ 
-    url: `https://devcademy.herokuapp.com/api/Accomodations/${props.data}`,
-    headers: {},
-    method: 'DELETE',
-    body: null,
-    onSuccess: null,
-    onFail: null
+      url: `https://devcademy.herokuapp.com/api/Accomodations/${props.data}`,
+      method: 'DELETE'
     })
+    navigate('/places')
     props.modalHandler()
   }
   

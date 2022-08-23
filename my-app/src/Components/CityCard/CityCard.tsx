@@ -10,14 +10,9 @@ const CityCard = () => {
 
   useEffect(() => {
     fetchLocations({ 
-      url: 'https://devcademy.herokuapp.com/api/Location',
-      headers: {},
-      method: 'GET',
-      body: null,
-      onSuccess: null,
-      onFail: null  
-    });
-  }, [fetchLocations]);
+      url: 'https://devcademy.herokuapp.com/api/Location'
+    })
+  }, [fetchLocations])
 
   return (
     <div className="city-container">

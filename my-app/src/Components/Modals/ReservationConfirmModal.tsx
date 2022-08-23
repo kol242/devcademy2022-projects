@@ -28,7 +28,7 @@ const ReservationConfirmModal: React.FC<{
       body: reservationData,
       onSuccess: props.handleSnackbar('success'),
       onFail: props.handleSnackbar('fail')
-      })
+    })
     props.modalHandler()
   }
   

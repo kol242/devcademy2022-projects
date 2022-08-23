@@ -20,20 +20,10 @@ const AdvancedSearch: React.FC<{ location: string, locationID: string, propertie
 
   useEffect(() => {
     fetchReservations({ 
-      url: 'https://devcademy.herokuapp.com/api/Reservation',
-      headers: {},
-      method: 'GET',
-      body: null,
-      onSuccess: null,
-      onFail: null  
+      url: 'https://devcademy.herokuapp.com/api/Reservation'
     })
     fetchAccomodations({ 
-      url: `https://devcademy.herokuapp.com/api/${props.isFavorites ? 'Accomodations/recommendation' : 'Accomodations'}`,
-      headers: {},
-      method: 'GET',
-      body: null,
-      onSuccess: null,
-      onFail: null  
+      url: `https://devcademy.herokuapp.com/api/${props.isFavorites ? 'Accomodations/recommendation' : 'Accomodations'}`
     })
   }, [fetchReservations, fetchAccomodations, props.isFavorites])
 

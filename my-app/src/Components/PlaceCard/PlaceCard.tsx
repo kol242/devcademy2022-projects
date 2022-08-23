@@ -3,19 +3,14 @@ import '../../Common/Style/place-card.css'
 import useHttp from '../../Hooks/use-http'
 import PlaceView from './PlaceView'
 
-const PlaceCard = () => {
+const PlaceCard: React.FC<{ refreshed: any }> = (props) => {
   const { fetchedData: accomodations, sendRequest: fetchAccomodations } = useHttp()
 
   useEffect(() => {
     fetchAccomodations({ 
-      url: 'https://devcademy.herokuapp.com/api/Accomodations',
-      headers: {},
-      method: 'GET',
-      body: null,
-      onSuccess: null,
-      onFail: null  
-    });
-  }, [fetchAccomodations]);
+      url: 'https://devcademy.herokuapp.com/api/Accomodations'
+    })
+  }, [fetchAccomodations])
 
   return (
     <div className="place-body">

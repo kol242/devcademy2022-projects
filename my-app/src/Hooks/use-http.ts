@@ -1,17 +1,16 @@
 import { useState, useCallback } from 'react'
 
+type ReqConfig = {
+    url: string, 
+    method?: string | undefined,
+    headers?: HeadersInit | undefined,
+    body?: object | null,
+    onSuccess?: any | null,
+    onFail?: any | null,
+}
+
 const useHttp = () => {
     const [fetchedData, setFetchedData] = useState<any>([])
-
-    type ReqConfig = {
-        url: string, 
-        method: string | undefined,
-        headers: HeadersInit | undefined,
-        body: object | null,
-        onSuccess: any | null,
-        onFail: any | null,
-    }
-
     const sendRequest = useCallback(async (requestConfig: ReqConfig) => {
         try {
             const response = await fetch(requestConfig.url, {
@@ -19,12 +18,6 @@ const useHttp = () => {
                 headers: requestConfig.headers ? requestConfig.headers : {},
                 body: requestConfig.body ? JSON.stringify(requestConfig.body) : null,
             })
-        
-            if (!response.ok) {
-                requestConfig.onFail && requestConfig.onFail()
-                throw new Error('Request failed!')
-            }
-
             const data = await response.json()
             setFetchedData(data)
             requestConfig.onSuccess && requestConfig.onSuccess()
@@ -32,9 +25,7 @@ const useHttp = () => {
             console.log(err)
             requestConfig.onFail && requestConfig.onFail()
         }
-
     }, [])
-
     return {
         fetchedData,
         sendRequest

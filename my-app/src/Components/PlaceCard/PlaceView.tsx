@@ -20,7 +20,7 @@ const PlaceView: React.FC<{ data: Accomodation }> = (props) => {
 
   const navigate = useNavigate()
   const send = () => {
-      navigate('/edit-place', { state: props.data })
+    navigate('/edit-place', { state: props.data })
   }
 
   return (
