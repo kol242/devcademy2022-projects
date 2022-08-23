@@ -1,37 +1,27 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef } from 'react'
 import WhereInput from './SearchInputs/WhereInput'
 import '../../Common/Style/simple-search.css'
 import { useNavigate } from 'react-router-dom'
-import { Place } from '../../Common/Models/Place'
+import useHttp from '../../Hooks/use-http'
 
 const SimpleSearch = () => {
+  const { fetchedData: locations, sendRequest: fetchLocations } = useHttp()
   const navigate = useNavigate()
-  const [locations, setLocations] = useState<Place[]>([])
   const locationRef = useRef<HTMLSelectElement>(null)
 
-  const fetchLocations = async () => {
-    try {
-      const response = await fetch(
-        'https://devcademy.herokuapp.com/api/Location'
-      );
-
-      if (!response.ok) {
-        throw new Error('Request failed!');
-      }
-
-      const data = await response.json();
-      setLocations(data)
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
   useEffect(() => {
-    fetchLocations();
-  }, []);
+    fetchLocations({ 
+      url: 'https://devcademy.herokuapp.com/api/Location',
+      headers: {},
+      method: 'GET',
+      body: null,
+      onSuccess: null,
+      onFail: null  
+    });
+  }, [fetchLocations]);
 
   const filter = (id: string | undefined) => {
-    const filteredData = locations.filter(el => el.id === id)
+    const filteredData = locations.filter((el: any) => el.id === id)
     return filteredData
   }
 
@@ -42,7 +32,6 @@ const SimpleSearch = () => {
       location: locationRef.current?.selectedOptions[0].text
     }
     const filteredLocations = filter(locationObj.locationID)
-    console.log(filteredLocations)
     navigate('/locations', { state: filteredLocations })
   }
 

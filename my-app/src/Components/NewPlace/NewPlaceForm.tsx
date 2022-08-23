@@ -10,6 +10,8 @@ import LocationSelect from './Inputs/LocationSelect'
 import Alert from '../Alert'
 import Snackbar from '@mui/material/Snackbar';
 import useHttp from '../../Hooks/use-http'
+import useSnackbar from '../../Hooks/use-snackbar'
+import useValidators from '../../Hooks/use-validators'
 
 const theme = createTheme({
     palette: {
@@ -24,6 +26,22 @@ const theme = createTheme({
 
 const NewPlaceForm = () => {
     const { sendRequest: addAccomodation } = useHttp()
+    const { response, isOpen, handleClose, handleOpen } = useSnackbar()
+    const 
+    { 
+        categoryError,
+        categoryValidation,
+        subtitleError,
+        subtitleValid,
+        subtitleValidation,
+        titleError,
+        titleValid,
+        titleValidation,
+        capacityError,
+        capacityValid,
+        capacityValidation 
+    } = useValidators()
+
     const [value, setValue] = React.useState<number | null>(0);
     const [checked, setChecked] = React.useState(true);
     const [type, setType] = React.useState('');
@@ -35,44 +53,6 @@ const NewPlaceForm = () => {
     const capacityRef = useRef<HTMLInputElement>(null)
     const priceRef = useRef<HTMLInputElement>(null)
     const urlRef = useRef<HTMLInputElement>(null)
-
-    type Response = {
-        text: string,
-        status: "success" | "error" | "info" | "warning"
-    }
-
-    const [response, setResponse] = React.useState<Response>();
-    const [open, setOpen] = React.useState(false);
-
-    const handleSnackbar = (requestState: string) => {
-        switch (requestState) {
-            case 'success':
-                setResponse({
-                text: 'Accomodation added successfully!',
-                status: 'success'
-                })
-                break
-            case 'fail':
-            setResponse({
-                text: 'Something went wrong!',
-                status: 'error'
-            })
-                break
-            case 'warning':
-                setResponse({
-                    text: 'Form is not validated',
-                    status: 'warning'
-                })
-            }
-        setOpen(true)
-    };
-    
-    const handleClose = (event?: React.SyntheticEvent | Event, reason?: string) => {
-    if (reason === 'clickaway') {
-        return;
-    }
-    setOpen(false);
-    };
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setChecked(event.target.checked);
@@ -115,73 +95,21 @@ const NewPlaceForm = () => {
                 headers: {'Content-Type': 'application/json'},
                 method: 'POST',
                 body: formData,
-                onSuccess: handleSnackbar('success'),
-                onFail: handleSnackbar('fail')
+                onSuccess: handleOpen('success'),
+                onFail: handleOpen('fail')
             })
             const form = document.getElementById('new-place-container__content--form') as HTMLFormElement;
             setLocation('')
             setType('')
             form.reset()
         } else {
-            handleSnackbar('warning')
-        }
-    }
-
-    // ============================================== VALIDATIONS ==========================================================
-
-    const [titleError, setTitleError] = React.useState(false);
-    const [titleValid, setIsTitleValid] = React.useState('');
-
-    function titleValidation(event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
-        if (event.target.value.length > 100) {
-            setTitleError(true)
-            setIsTitleValid('Maximum 100 characters!')
-        } else {
-            setIsTitleValid('')
-            setTitleError(false)
-        }
-    }
-
-    const [subtitleError, setSubitleError] = React.useState(false);
-    const [subtitleValid, setIsSubitleValid] = React.useState('');
-
-    function subtitleValidation(event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
-        if (event.target.value.length > 200) {
-            setSubitleError(true)
-            setIsSubitleValid('Maximum 200 characters!')
-        } else {
-            setIsSubitleValid('')
-            setSubitleError(false)
-        }
-    }
-
-    const [capacityError, setCapacityError] = React.useState(false);
-    const [capacityValid, setIsCapacityValid] = React.useState('');
-
-    function capacityValidation(event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
-        const number = Number(event.target.value)
-        if (number < 1) {
-            setCapacityError(true)
-            setIsCapacityValid('Minimum capacity is 1!')
-        } else {
-            setIsCapacityValid('')
-            setCapacityError(false)
-        }
-    }
-
-    const [categoryError, setCategoryError] = React.useState(false);
-
-    function categoryValidation(value: number) {
-        if (value < 1) {
-            setCategoryError(true)
-        } else {
-            setCategoryError(false)
+            handleOpen('warning')
         }
     }
 
     return (
         <>
-            <Snackbar open={open} autoHideDuration={6000} onClose={handleClose} anchorOrigin={{vertical: 'top', horizontal: 'right'}}>
+            <Snackbar open={isOpen} autoHideDuration={6000} onClose={handleClose} anchorOrigin={{vertical: 'top', horizontal: 'right'}}>
                 <Alert onClose={handleClose} severity={response?.status} sx={{ width: '100%' }}>
                 {response?.text}
                 </Alert>

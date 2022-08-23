@@ -11,6 +11,7 @@ import Alert from '../Alert'
 import Snackbar from '@mui/material/Snackbar';
 import { useLocation } from 'react-router-dom'
 import useHttp from '../../Hooks/use-http'
+import useSnackbar from '../../Hooks/use-snackbar'
 
 const theme = createTheme({
     palette: {
@@ -26,6 +27,7 @@ const theme = createTheme({
 const EditPlaceForm = () => {
     const { state }: any = useLocation()
     const { sendRequest: editAccomodationHandler } = useHttp()
+    const { response, isOpen, handleClose, handleOpen } = useSnackbar()
 
     const [value, setValue] = React.useState<number | null>(state.categorization);
     const [checked, setChecked] = React.useState(state.freeCancelation);
@@ -38,37 +40,6 @@ const EditPlaceForm = () => {
     const capacityRef = useRef<HTMLInputElement>(null)
     const priceRef = useRef<HTMLInputElement>(null)
     const urlRef = useRef<HTMLInputElement>(null)
-
-    type Response = {
-        text: string,
-        status: "success" | "error" | "info" | "warning"
-      }
-      const [response, setResponse] = React.useState<Response>();
-      const [open, setOpen] = React.useState(false);
-    
-      const handleSnackbar = (requestState: string) => {
-        switch (requestState) {
-          case 'success':
-             setResponse({
-              text: 'Accomodation updated successfully!',
-              status: 'success'
-             })
-            break
-          case 'error':
-            setResponse({
-              text: 'Something went wrong!',
-              status: 'error'
-            })
-        }
-        setOpen(true)
-      };
-    
-      const handleClose = (event?: React.SyntheticEvent | Event, reason?: string) => {
-        if (reason === 'clickaway') {
-          return;
-        }
-        setOpen(false);
-      };
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setChecked(event.target.checked);
@@ -109,14 +80,14 @@ const EditPlaceForm = () => {
         headers: {'Content-Type': 'application/json'},
         method: 'PUT',
         body: formData,
-        onSuccess: handleSnackbar('success'),
-        onFail: handleSnackbar('error')
+        onSuccess: handleOpen('success'),
+        onFail: handleOpen('error')
       })
     }
 
     return (
         <>
-            <Snackbar open={open} autoHideDuration={6000} onClose={handleClose} anchorOrigin={{vertical: 'top', horizontal: 'right'}}>
+            <Snackbar open={isOpen} autoHideDuration={6000} onClose={handleClose} anchorOrigin={{vertical: 'top', horizontal: 'right'}}>
                 <Alert onClose={handleClose} severity={response?.status} sx={{ width: '100%' }}>
                     {response?.text}
                 </Alert>

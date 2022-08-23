@@ -5,7 +5,8 @@ import useHttp from '../../Hooks/use-http'
 
 const ReservationConfirmModal: React.FC<{ 
   modalHandler: Function, 
-  data: any, accData: Accomodation, 
+  data: any, 
+  accData: Accomodation, 
   handleSnackbar: any 
 }> = (props) => {
   const { sendRequest: addReservation } = useHttp()

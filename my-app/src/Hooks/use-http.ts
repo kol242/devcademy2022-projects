@@ -1,7 +1,7 @@
 import { useState, useCallback } from 'react'
 
 const useHttp = () => {
-    const [fetchedData, setFetchedData] = useState([])
+    const [fetchedData, setFetchedData] = useState<any>([])
 
     type ReqConfig = {
         url: string, 
@@ -11,7 +11,7 @@ const useHttp = () => {
         onSuccess: any | null,
         onFail: any | null,
     }
-    
+
     const sendRequest = useCallback(async (requestConfig: ReqConfig) => {
         try {
             const response = await fetch(requestConfig.url, {

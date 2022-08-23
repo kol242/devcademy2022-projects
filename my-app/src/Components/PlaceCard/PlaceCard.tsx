@@ -19,7 +19,7 @@ const PlaceCard = () => {
 
   return (
     <div className="place-body">
-      { accomodations.map((place, index) => 
+      { accomodations.map((place: any, index: any) => 
         <PlaceView key={index} data={place}/>  
       ) }
     </div>

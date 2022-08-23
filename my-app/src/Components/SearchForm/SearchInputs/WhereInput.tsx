@@ -1,41 +1,36 @@
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import LocationIcon from '../../../Common/Images/location-icon.svg'
 import { Location } from '../../../Common/Models/Place'
+import useHttp from '../../../Hooks/use-http'
 
 
 const WhereInput = React.forwardRef((props, ref: React.Ref<HTMLSelectElement>) => {
- 
+  const { fetchedData: locationData, sendRequest: fetchLocations } = useHttp()
   const [locations, setLocations] = useState<Location[]>([])
 
-  const fetchLocations = async () => {
-    try {
-      const response = await fetch(
-        'https://devcademy.herokuapp.com/api/Location'
-      );
-
-      if (!response.ok) {
-        throw new Error('Request failed!');
-      }
-
-      const data = await response.json();
-      const loadedLocations = [];
-
-      for (const location in data) {
+  const locationHandler = useCallback(() => {
+    fetchLocations({ 
+      url: 'https://devcademy.herokuapp.com/api/Location',
+      headers: {},
+      method: 'GET',
+      body: null,
+      onSuccess: null,
+      onFail: null  
+    }) 
+    let loadedLocations = []
+      for (const location in locationData) {
         loadedLocations.push({ 
-          id: data[location].id, 
-          name: data[location].name, 
-          properties: data[location].properties 
+          id: locationData[location].id, 
+          name: locationData[location].name, 
+          properties: locationData[location].properties 
         });
       }
       setLocations(loadedLocations)
-    } catch (err) {
-      console.log(err);
-    }
-  };
+  }, [fetchLocations, locationData])
 
   useEffect(() => {
-    fetchLocations();
-  }, []);
+    locationHandler();
+  }, [locationHandler]);
 
   return (
     <div className="input-wrapper">
