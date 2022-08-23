@@ -18,7 +18,7 @@ const Reservations: React.FC<{ data: Reservation }> = (props) => {
     backgroundPosition: 'center'
   }
 
-  function dateFormater(date: string) {
+  function dateFormater(date: string | number) {
     const formatted = new Date(date)
     return formatted.toDateString()
   }

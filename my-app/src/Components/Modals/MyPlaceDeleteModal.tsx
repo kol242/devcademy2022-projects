@@ -1,22 +1,22 @@
 import React from 'react'
 import '../../Common/Style/modal.css'
+import useHttp from '../../Hooks/use-http'
 
 const MyPlaceDeleteModal: React.FC<{ modalHandler: any, data: any }> = (props) => {
+  const { sendRequest: deleteAccomodation } = useHttp()
 
-  const deleteAccomodation = async () => {
-    try {
-      const response = await fetch(`https://devcademy.herokuapp.com/api/Accomodations/${props.data}`, { method: 'DELETE' });
-
-      if (!response.ok) {
-        throw new Error('Request failed!');
-      }
-    } catch (err) {
-      console.error(err);
-    }
-
+  const deleteHandler = () => {
+    deleteAccomodation({ 
+    url: `https://devcademy.herokuapp.com/api/Accomodations/${props.data}`,
+    headers: {},
+    method: 'DELETE',
+    body: null,
+    onSuccess: null,
+    onFail: null
+    })
     props.modalHandler()
-  };
-
+  }
+  
   return (
     <div className="modal-container">
       <div className="modal-container__content">
@@ -26,7 +26,7 @@ const MyPlaceDeleteModal: React.FC<{ modalHandler: any, data: any }> = (props) =
         </div>
         <div className="content-btns">
           <button id="content-btns__btn" onClick={(event) => props.modalHandler(event)}>Cancel</button>
-          <button id="content-btns__btn" onClick={deleteAccomodation}>Delete</button>
+          <button id="content-btns__btn" onClick={deleteHandler}>Delete</button>
         </div>
       </div>
     </div>

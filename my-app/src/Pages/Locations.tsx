@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from 'react'
+import { useLocation } from 'react-router-dom'
+import { Place } from '../Common/Models/Place'
 import '../Common/Style/locations.css'
 import CityView from '../Components/CityCard/CityView'
 import SimpleSearch from '../Components/SearchForm/SimpleSearch'
 
 const Locations = () => {
-  const [isLoading, setIsLoading] = useState(false);
-  const [locations, setLocations] = useState([])
+  const [locations, setLocations] = useState<Place[]>([])
+  const { state }: any = useLocation()
 
   const fetchLocations = async () => {
-    setIsLoading(true);
     try {
       const response = await fetch(
         'https://devcademy.herokuapp.com/api/Location'
@@ -23,19 +24,18 @@ const Locations = () => {
     } catch (err) {
       console.log(err);
     }
-    setIsLoading(false);
   };
 
   useEffect(() => {
     fetchLocations();
   }, []);
+
   return (
     <div className="locations-container">
       <h1 id="locations-container--title">All locations</h1>
       <SimpleSearch />
       <div className="locations-container__body">
-        { isLoading && <p>Loading...</p> }
-        { locations.map((locations, index) =>
+        { (state ? state : locations).map((locations: any, index: any) =>
           <CityView key={index} class='locations-container__card' city={locations}/>  
         ) }  
       </div>

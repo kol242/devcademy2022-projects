@@ -1,12 +1,14 @@
 import React from 'react'
 import { Accomodation } from '../../Common/Models/Accomodation'
 import '../../Common/Style/modal.css'
+import useHttp from '../../Hooks/use-http'
 
 const ReservationConfirmModal: React.FC<{ 
   modalHandler: Function, 
   data: any, accData: Accomodation, 
   handleSnackbar: any 
 }> = (props) => {
+  const { sendRequest: addReservation } = useHttp()
 
   const reservationData = {
     email: props.data.email,
@@ -17,28 +19,15 @@ const ReservationConfirmModal: React.FC<{
     confirmed: true
   }
 
-  const addReservationHandler = async () => {
-    try {
-      const response = await fetch(
-        'https://devcademy.herokuapp.com/api/Reservation',
-        {
-          method: 'POST',
-          body: JSON.stringify(reservationData),
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        }
-      );
-
-      if (!response.ok) {
-        props.handleSnackbar('fail')
-        throw new Error('Request failed!')
-      }
-      props.handleSnackbar('success')
-    } catch (err) {
-      console.error(err);
-      props.handleSnackbar('fail')
-    }
+  const addReservationHandler = () => {
+    addReservation({ 
+      url: 'https://devcademy.herokuapp.com/api/Reservation',
+      headers: {'Content-Type': 'application/json'},
+      method: 'POST',
+      body: reservationData,
+      onSuccess: props.handleSnackbar('success'),
+      onFail: props.handleSnackbar('fail')
+      })
     props.modalHandler()
   }
   

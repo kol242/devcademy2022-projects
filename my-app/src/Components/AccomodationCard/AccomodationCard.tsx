@@ -1,32 +1,23 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import '../../Common/Style/accomodation-card.css'
 import AccView from './AccView'
 import { Link } from "react-router-dom";
 import Arrow from '../../Common/Images/Button/Vector.svg'
+import useHttp from '../../Hooks/use-http'
 
 const AccomodationCard = () => {
-  const [accomodations, setAccomodations] = useState([])
-
-  const fetchLocations = async () => {
-    try {
-      const response = await fetch(
-        'https://devcademy.herokuapp.com/api/Accomodations/recommendation'
-      );
-
-      if (!response.ok) {
-        throw new Error('Request failed!');
-      }
-
-      const data = await response.json();
-      setAccomodations(data)
-    } catch (err) {
-      console.log(err);
-    }
-  };
+  const { fetchedData: accomodations, sendRequest: fetchAccomodations } = useHttp()
 
   useEffect(() => {
-    fetchLocations();
-  }, []);
+    fetchAccomodations({ 
+      url: 'https://devcademy.herokuapp.com/api/Accomodations',
+      headers: {},
+      method: 'GET',
+      body: null,
+      onSuccess: null,
+      onFail: null 
+    });
+  }, [fetchAccomodations]);
 
   return (
     <div className="acc-container">

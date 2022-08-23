@@ -37,8 +37,6 @@ const WhereInput = React.forwardRef((props, ref: React.Ref<HTMLSelectElement>) =
     fetchLocations();
   }, []);
 
-   
-
   return (
     <div className="input-wrapper">
         <label id="input-label">Where are you going?</label>

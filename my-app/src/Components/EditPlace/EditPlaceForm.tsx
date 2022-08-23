@@ -10,6 +10,7 @@ import LocationSelect from './Inputs/LocationSelect'
 import Alert from '../Alert'
 import Snackbar from '@mui/material/Snackbar';
 import { useLocation } from 'react-router-dom'
+import useHttp from '../../Hooks/use-http'
 
 const theme = createTheme({
     palette: {
@@ -24,6 +25,7 @@ const theme = createTheme({
 
 const EditPlaceForm = () => {
     const { state }: any = useLocation()
+    const { sendRequest: editAccomodationHandler } = useHttp()
 
     const [value, setValue] = React.useState<number | null>(state.categorization);
     const [checked, setChecked] = React.useState(state.freeCancelation);
@@ -102,33 +104,15 @@ const EditPlaceForm = () => {
         personCount: 0,
         imageUrl: urlRef.current?.value
       }
-      console.log(formData)
-      editAccomodationHandler(formData)
+      editAccomodationHandler({ 
+        url: `https://devcademy.herokuapp.com/api/Accomodations/${state.id}`,
+        headers: {'Content-Type': 'application/json'},
+        method: 'PUT',
+        body: formData,
+        onSuccess: handleSnackbar('success'),
+        onFail: handleSnackbar('error')
+      })
     }
-
-    const editAccomodationHandler = async (formData: {}) => {
-        try {
-            const response = await fetch(
-                `https://devcademy.herokuapp.com/api/Accomodations/${state.id}`,
-                {
-                method: 'PUT',
-                body: JSON.stringify(formData),
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                }
-            );
-        
-            if (!response.ok) {
-                handleSnackbar('error')
-                throw new Error('Request failed!')
-            }
-            handleSnackbar('success')
-        } catch (err) {
-            console.error(err)
-            handleSnackbar('error')
-        }
-      }
 
     return (
         <>

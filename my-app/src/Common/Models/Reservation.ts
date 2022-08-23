@@ -23,8 +23,8 @@ export type Reservation = {
       }
       postalCode?: number;
     },
-    checkIn: string,
-    checkOut: string,
+    checkIn: string | number,
+    checkOut: string | number,
     personCount: number,
     confirmed: boolean,
   }

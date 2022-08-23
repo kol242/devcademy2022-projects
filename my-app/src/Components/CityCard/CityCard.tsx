@@ -1,32 +1,23 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import '../../Common/Style/city-card.css'
 import CityView from './CityView'
 import { Link } from "react-router-dom";
 import Arrow from '../../Common/Images/Button/Vector.svg'
+import useHttp from '../../Hooks/use-http'
 
 const CityCard = () => {
-  const [locations, setLocations] = useState([])
-
-  const fetchLocations = async () => {
-    try {
-      const response = await fetch(
-        'https://devcademy.herokuapp.com/api/Location'
-      );
-
-      if (!response.ok) {
-        throw new Error('Request failed!');
-      }
-
-      const data = await response.json();
-      setLocations(data)
-    } catch (err) {
-      console.log(err);
-    }
-  };
+  const { fetchedData: locations, sendRequest: fetchLocations } = useHttp()
 
   useEffect(() => {
-    fetchLocations();
-  }, []);
+    fetchLocations({ 
+      url: 'https://devcademy.herokuapp.com/api/Location',
+      headers: {},
+      method: 'GET',
+      body: null,
+      onSuccess: null,
+      onFail: null  
+    });
+  }, [fetchLocations]);
 
   return (
     <div className="city-container">

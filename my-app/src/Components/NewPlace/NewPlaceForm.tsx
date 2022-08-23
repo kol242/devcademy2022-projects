@@ -9,6 +9,7 @@ import Cancellation from './Inputs/Cancellation'
 import LocationSelect from './Inputs/LocationSelect'
 import Alert from '../Alert'
 import Snackbar from '@mui/material/Snackbar';
+import useHttp from '../../Hooks/use-http'
 
 const theme = createTheme({
     palette: {
@@ -22,6 +23,7 @@ const theme = createTheme({
 })
 
 const NewPlaceForm = () => {
+    const { sendRequest: addAccomodation } = useHttp()
     const [value, setValue] = React.useState<number | null>(0);
     const [checked, setChecked] = React.useState(true);
     const [type, setType] = React.useState('');
@@ -108,36 +110,20 @@ const NewPlaceForm = () => {
         }
         categoryValidation(formData.categorization)
         if ( !titleError && !capacityError && !subtitleError && !categoryError ) {
-            addAccomodationHandler(formData)
+            addAccomodation({ 
+                url: 'https://devcademy.herokuapp.com/api/Accomodations',
+                headers: {'Content-Type': 'application/json'},
+                method: 'POST',
+                body: formData,
+                onSuccess: handleSnackbar('success'),
+                onFail: handleSnackbar('fail')
+            })
             const form = document.getElementById('new-place-container__content--form') as HTMLFormElement;
             setLocation('')
             setType('')
             form.reset()
         } else {
             handleSnackbar('warning')
-        }
-    }
-
-    const addAccomodationHandler = async (formData: {}) => {
-        try {
-            const response = await fetch(
-                'https://devcademy.herokuapp.com/api/Accomodations',
-                {
-                    method: 'POST',
-                    body: JSON.stringify(formData),
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                }
-            )
-            if (!response.ok) {
-                handleSnackbar('fail')
-                throw new Error('Request failed!')
-            }
-            handleSnackbar('success')
-        } catch (err) {
-            console.error(err)
-            handleSnackbar('fail')
         }
     }
 
