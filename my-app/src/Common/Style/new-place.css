@@ -6,6 +6,28 @@
     gap: 40px;
 }
 
+#info-success {
+    margin: 0;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 120%;
+    letter-spacing: 0.25px;
+    color: #44ab43;
+}
+
+#info-fail {
+    margin: 0;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 120%;
+    letter-spacing: 0.25px;
+    color: #d32626;
+}
+
 #new-place-container__title {
     margin: 0;
     font-family: 'Roboto';

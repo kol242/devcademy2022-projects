@@ -1,6 +1,18 @@
+.place-body {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+}
+
 .place-container {
     display: flex;
     gap: 24px;
+}
+
+#place-container__card--image {
+    width: 300px;
+    height: 266px;
+    border-radius: 12px;
 }
 
 #place-container__title {
@@ -58,6 +70,7 @@
 .place-container__card--btns {
     display: flex;
     gap: 28px;
+    margin-bottom: 20px;
 }
 
 #btns-edit {

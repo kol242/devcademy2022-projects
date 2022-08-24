@@ -9,8 +9,8 @@ import Cancellation from './Inputs/Cancellation'
 import LocationSelect from './Inputs/LocationSelect'
 import Alert from '../Alert'
 import Snackbar from '@mui/material/Snackbar';
+import { useLocation } from 'react-router-dom'
 import useHttp from '../../Hooks/use-http'
-import useValidators from '../../Hooks/use-validators'
 
 const theme = createTheme({
     palette: {
@@ -23,27 +23,14 @@ const theme = createTheme({
     }
 })
 
-const NewPlaceForm = () => {
-    const { sendRequest: addAccomodation, snackbarResponse, isSnackbarOpen, closeSnackbar, openSnackbar } = useHttp()
-    const 
-    { 
-        categoryError,
-        categoryValidation,
-        subtitleError,
-        subtitleValid,
-        subtitleValidation,
-        titleError,
-        titleValid,
-        titleValidation,
-        capacityError,
-        capacityValid,
-        capacityValidation 
-    } = useValidators()
+const EditPlaceForm = () => {
+    const { state }: any = useLocation()
+    const { sendRequest: editAccomodationHandler, snackbarResponse, isSnackbarOpen, closeSnackbar } = useHttp()
 
-    const [value, setValue] = React.useState<number | null>(0);
-    const [checked, setChecked] = React.useState(true);
-    const [type, setType] = React.useState('');
-    const [location, setLocation] = React.useState<any>();
+    const [value, setValue] = React.useState<number | null>(state.categorization);
+    const [checked, setChecked] = React.useState(state.freeCancelation);
+    const [type, setType] = React.useState(state.type);
+    const [location, setLocation] = React.useState<any>(state.location);
 
     const nameRef = useRef<HTMLInputElement>(null)
     const shortRef = useRef<HTMLInputElement>(null)
@@ -65,76 +52,62 @@ const NewPlaceForm = () => {
     };
     
     const submitHandler = (event: React.FormEvent) => {
-        event.preventDefault()
-        const formData = {
-            title: nameRef.current?.value,
-            subtitle: 'test',
-            shortDescription: shortRef.current?.value,
-            description: longRef.current?.value,
-            categorization: Number(value),
-            type: type,
-            capacity: Number(capacityRef.current?.value),
-            price: Number(priceRef.current?.value),
-            locationID: location?.id,
-            location: {
-                name: location?.name,
-                postalCode: Number(location?.postalCode),
-                imageUrl: location?.imageUrl,
-                properties: Number(location?.properties)
+      event.preventDefault()
+      const formData = {
+        title: nameRef.current?.value,
+        subtitle: 'test',
+        shortDescription: shortRef.current?.value,
+        description: longRef.current?.value,
+        categorization: Number(value),
+        type: type,
+        capacity: Number(capacityRef.current?.value),
+        price: Number(priceRef.current?.value),
+        locationID: location?.id,
+        location: {
+            name: location?.name,
+            postalCode: Number(location?.postalCode),
+            imageUrl: location?.imageUrl,
+            properties: Number(location?.properties)
         },
-            freeCancellation: checked,
-            personCount: 0,
-            imageUrl: urlRef.current?.value
-        }
-        categoryValidation(formData.categorization)
-        if ( !titleError && !capacityError && !subtitleError && !categoryError ) {
-            addAccomodation({ 
-                url: 'https://devcademy.herokuapp.com/api/Accomodations',
-                headers: {'Content-Type': 'application/json'},
-                method: 'POST',
-                body: formData
-            })
-            const form = document.getElementById('new-place-container__content--form') as HTMLFormElement;
-            setLocation('')
-            setType('')
-            form.reset()
-        } else {
-            openSnackbar('warning')
-        }
+        freeCancellation: checked,
+        personCount: 0,
+        imageUrl: urlRef.current?.value
+      }
+      editAccomodationHandler({ 
+        url: `https://devcademy.herokuapp.com/api/Accomodations/${state.id}`,
+        headers: {'Content-Type': 'application/json'},
+        method: 'PUT',
+        body: formData
+      })
     }
 
     return (
         <>
             <Snackbar open={isSnackbarOpen} autoHideDuration={6000} onClose={closeSnackbar} anchorOrigin={{vertical: 'top', horizontal: 'right'}}>
                 <Alert onClose={closeSnackbar} severity={snackbarResponse?.status} sx={{ width: '100%' }}>
-                {snackbarResponse?.text}
+                    {snackbarResponse?.text}
                 </Alert>
             </Snackbar>
             <div className="new-place-container">
-                <h1 id="new-place-container__title">Add new place</h1>
+                <h1 id="new-place-container__title">Edit place</h1>
                 <div className="new-place-container__content">
                     <form onSubmit={submitHandler} id="new-place-container__content--form" action="submit">
                         <ThemeProvider theme={theme}>
                             <TextField 
-                                required
-                                error={titleError}
                                 id="outlined-basic" 
                                 label="Listing name" 
                                 variant="outlined" 
-                                color="primary" 
+                                color="primary"
                                 inputRef={nameRef}
-                                onChange={(event) => titleValidation(event)}
-                                helperText={titleValid}
+                                defaultValue={state.title}
                             />    
                             <TextField 
-                                error={subtitleError}
-                                helperText={subtitleValid}
-                                onChange={(event) => subtitleValidation(event)}
                                 id="outlined-basic" 
                                 label="Short description" 
                                 variant="outlined" 
                                 color="primary" 
                                 inputRef={shortRef}
+                                defaultValue={state.shortDescription}
                             />    
                             <TextField 
                                 id="outlined-basic" 
@@ -144,40 +117,38 @@ const NewPlaceForm = () => {
                                 variant="outlined" 
                                 color="primary" 
                                 inputRef={longRef}
-                            /> 
-                            <div>
-                                <Categorization label='Categorization' handleChange={setValue}/>
-                                { categoryError && <p style={{color: 'red', margin: 0, fontSize: '14px'}}>Categorization is required!</p>}    
-                            </div> 
+                                defaultValue={state.description}
+                            />  
+                            <Categorization default={state.categorization} label='Categorization' handleChange={setValue}/>
                             <AccomodationType 
                                 label='Accomodation type' 
                                 type={type} 
+                                default={state.type}
                                 handleTypeChange={handleTypeChange}
                             />
-                            <TextField
-                                error={capacityError}
-                                helperText={capacityValid}
-                                onChange={(event) => capacityValidation(event)}
+                            <TextField 
                                 id="outlined-basic" 
                                 label="Capacity"
                                 variant="outlined" 
                                 type='number' 
                                 color="primary" 
                                 inputRef={capacityRef}
+                                defaultValue={state.personCount}
                             />  
                             <TextField 
-                                required
                                 id="outlined-basic" 
                                 label="Price" 
                                 variant="outlined" 
                                 type='number' 
                                 color="primary" 
                                 inputRef={priceRef}
+                                defaultValue={state.price}
                             />  
                             <LocationSelect 
                                 handleLocationChange={handleLocationChange}
                                 label='Location'
                                 location={location}
+                                default={state.location.name}
                             />
                             <TextField 
                                 id="outlined-basic" 
@@ -185,6 +156,7 @@ const NewPlaceForm = () => {
                                 variant="outlined" 
                                 color="primary" 
                                 inputRef={urlRef}
+                                defaultValue={state.imageUrl}
                             />
                             <Cancellation 
                                 label='Free cancellation available' 
@@ -192,7 +164,7 @@ const NewPlaceForm = () => {
                                 checked={checked} 
                             />
                         </ThemeProvider>
-                        <button id="add-btn">Add new place</button>
+                        <button id="add-btn">Save changes</button>
                     </form>
                 </div>
             </div>
@@ -201,4 +173,4 @@ const NewPlaceForm = () => {
     )
 }
 
-export default NewPlaceForm
+export default EditPlaceForm
