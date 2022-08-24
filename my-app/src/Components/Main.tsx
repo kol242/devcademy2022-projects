@@ -13,6 +13,7 @@ import BookingFlow from '../Pages/BookingFlow'
 import AccommodationsByLocation from '../Pages/AccommodationsByLocation.tsx'
 import NewPlaceForm from './NewPlace/NewPlaceForm'
 import EditPlaceForm from './EditPlace/EditPlaceForm'
+import Login from '../Pages/Login'
 
 const Main = () => {
   return (
@@ -30,6 +31,7 @@ const Main = () => {
             <Route path="/accomodation-by-location" element={<AccommodationsByLocation />} />
             <Route path="/new-place" element={<NewPlaceForm />} />
             <Route path="/edit-place" element={<EditPlaceForm />} />
+            <Route path="/login" element={<Login />} />
           </Routes>
         </div>
         <Footer />

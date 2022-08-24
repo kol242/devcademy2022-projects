@@ -64,7 +64,7 @@ const useHttp = () => {
                 const data = await response.json()
                 setFetchedData(data)    
             }
-            requestConfig.method === 'DELETE' ? openSnackbar('deleted') : openSnackbar('success')
+            openSnackbar('success')
         } catch (err) {
             console.log(err)
             openSnackbar('fail')
