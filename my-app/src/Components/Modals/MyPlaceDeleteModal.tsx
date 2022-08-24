@@ -7,12 +7,16 @@ const MyPlaceDeleteModal: React.FC<{ modalHandler: any, data: any }> = (props) =
   const { sendRequest: deleteAccomodation } = useHttp()
   const navigate = useNavigate()
 
-  const deleteHandler = () => {
-    deleteAccomodation({ 
+  function refreshPage() {
+    window.location.reload();
+  }
+
+  const deleteHandler = async () => {
+    await deleteAccomodation({ 
       url: `https://devcademy.herokuapp.com/api/Accomodations/${props.data}`,
       method: 'DELETE'
     })
-    navigate('/places')
+    navigate('/places', { state: refreshPage })
     props.modalHandler()
   }
   

@@ -6,11 +6,12 @@ import MyPlaceDeleteModal from '../Modals/MyPlaceDeleteModal'
 const PlaceView: React.FC<{ data: Accomodation }> = (props) => {
   const [modal, setModal] = useState(false);
   const [modalData, setModalData] = useState({});
- 
+  
+
   const modalHandler = (data: any) => {
     setModalData(data)
     !modal ? setModal(true) : setModal(false);
-  };
+  }
 
   const imageStyle = {
     background: `linear-gradient(180deg, rgba(0, 0, 0, 0.3) 0%, rgba(255, 255, 255, 0) 100%), url(${props.data.imageUrl})`,

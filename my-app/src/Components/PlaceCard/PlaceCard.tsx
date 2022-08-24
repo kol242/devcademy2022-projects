@@ -3,7 +3,7 @@ import '../../Common/Style/place-card.css'
 import useHttp from '../../Hooks/use-http'
 import PlaceView from './PlaceView'
 
-const PlaceCard: React.FC<{ refreshed: any }> = (props) => {
+const PlaceCard = () => {
   const { fetchedData: accomodations, sendRequest: fetchAccomodations } = useHttp()
 
   useEffect(() => {

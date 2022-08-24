@@ -10,7 +10,6 @@ import LocationSelect from './Inputs/LocationSelect'
 import Alert from '../Alert'
 import Snackbar from '@mui/material/Snackbar';
 import useHttp from '../../Hooks/use-http'
-import useSnackbar from '../../Hooks/use-snackbar'
 import useValidators from '../../Hooks/use-validators'
 
 const theme = createTheme({
@@ -25,8 +24,7 @@ const theme = createTheme({
 })
 
 const NewPlaceForm = () => {
-    const { sendRequest: addAccomodation } = useHttp()
-    const { response, isOpen, handleClose, handleOpen } = useSnackbar()
+    const { sendRequest: addAccomodation, snackbarResponse, isSnackbarOpen, closeSnackbar, openSnackbar } = useHttp()
     const 
     { 
         categoryError,
@@ -94,24 +92,22 @@ const NewPlaceForm = () => {
                 url: 'https://devcademy.herokuapp.com/api/Accomodations',
                 headers: {'Content-Type': 'application/json'},
                 method: 'POST',
-                body: formData,
-                onSuccess: handleOpen('success'),
-                onFail: handleOpen('fail')
+                body: formData
             })
             const form = document.getElementById('new-place-container__content--form') as HTMLFormElement;
             setLocation('')
             setType('')
             form.reset()
         } else {
-            handleOpen('warning')
+            openSnackbar('warning')
         }
     }
 
     return (
         <>
-            <Snackbar open={isOpen} autoHideDuration={6000} onClose={handleClose} anchorOrigin={{vertical: 'top', horizontal: 'right'}}>
-                <Alert onClose={handleClose} severity={response?.status} sx={{ width: '100%' }}>
-                {response?.text}
+            <Snackbar open={isSnackbarOpen} autoHideDuration={6000} onClose={closeSnackbar} anchorOrigin={{vertical: 'top', horizontal: 'right'}}>
+                <Alert onClose={closeSnackbar} severity={snackbarResponse?.status} sx={{ width: '100%' }}>
+                {snackbarResponse?.text}
                 </Alert>
             </Snackbar>
             <div className="new-place-container">

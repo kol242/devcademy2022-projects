@@ -11,7 +11,6 @@ import Alert from '../Alert'
 import Snackbar from '@mui/material/Snackbar';
 import { useLocation } from 'react-router-dom'
 import useHttp from '../../Hooks/use-http'
-import useSnackbar from '../../Hooks/use-snackbar'
 
 const theme = createTheme({
     palette: {
@@ -26,8 +25,7 @@ const theme = createTheme({
 
 const EditPlaceForm = () => {
     const { state }: any = useLocation()
-    const { sendRequest: editAccomodationHandler } = useHttp()
-    const { response, isOpen, handleClose, handleOpen } = useSnackbar()
+    const { sendRequest: editAccomodationHandler, snackbarResponse, isSnackbarOpen, closeSnackbar } = useHttp()
 
     const [value, setValue] = React.useState<number | null>(state.categorization);
     const [checked, setChecked] = React.useState(state.freeCancelation);
@@ -79,17 +77,15 @@ const EditPlaceForm = () => {
         url: `https://devcademy.herokuapp.com/api/Accomodations/${state.id}`,
         headers: {'Content-Type': 'application/json'},
         method: 'PUT',
-        body: formData,
-        onSuccess: handleOpen('success'),
-        onFail: handleOpen('error')
+        body: formData
       })
     }
 
     return (
         <>
-            <Snackbar open={isOpen} autoHideDuration={6000} onClose={handleClose} anchorOrigin={{vertical: 'top', horizontal: 'right'}}>
-                <Alert onClose={handleClose} severity={response?.status} sx={{ width: '100%' }}>
-                    {response?.text}
+            <Snackbar open={isSnackbarOpen} autoHideDuration={6000} onClose={closeSnackbar} anchorOrigin={{vertical: 'top', horizontal: 'right'}}>
+                <Alert onClose={closeSnackbar} severity={snackbarResponse?.status} sx={{ width: '100%' }}>
+                    {snackbarResponse?.text}
                 </Alert>
             </Snackbar>
             <div className="new-place-container">

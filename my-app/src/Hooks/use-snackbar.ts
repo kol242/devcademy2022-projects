@@ -13,7 +13,7 @@ const useSnackbar = () => {
         switch (requestState) {
         case 'success':
             setResponse({
-            text: 'Reservation submited successfully!',
+            text: 'Form submited successfully!',
             status: 'success'
             })
         break

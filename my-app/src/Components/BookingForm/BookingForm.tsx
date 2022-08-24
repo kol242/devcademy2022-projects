@@ -4,10 +4,8 @@ import DatePicker from '../SearchForm/SearchInputs/DatePicker'
 import TextField from '@mui/material/TextField';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import ReservationConfirmModal from '../Modals/ReservationConfirmModal'
-import Snackbar from '@mui/material/Snackbar';
-import Alert from '../Alert'
-import useSnackbar from '../../Hooks/use-snackbar'
 import useValidators from '../../Hooks/use-validators'
+import useHttp from '../../Hooks/use-http'
 
 const theme = createTheme({
   palette: {
@@ -18,7 +16,7 @@ const theme = createTheme({
 })
 
 const BookingForm: React.FC<{ state: any }> = (props) => {
-  const { response, isOpen, handleClose, handleOpen } = useSnackbar()
+  const { openSnackbar } = useHttp()
   const { nameError,
     nameValid,
     nameValidation,
@@ -55,26 +53,20 @@ const BookingForm: React.FC<{ state: any }> = (props) => {
     if ( !nameError && !capacityError && !emailError ) {
       setModalData(formData)
       modalHandler()
-      const form = document.getElementById('new-place-container__content--form') as HTMLFormElement;
+      const form = document.getElementById('booking-container__content--form') as HTMLFormElement;
       form.reset()
     } else {
-      handleOpen('warning')
+      openSnackbar('warning')
     }
   }
 
   return (
     <>
-      <Snackbar open={isOpen} autoHideDuration={6000} onClose={handleClose} anchorOrigin={{vertical: 'top', horizontal: 'right'}}>
-        <Alert onClose={handleClose} severity={response?.status} sx={{ width: '100%' }}>
-          {response?.text}
-        </Alert>
-      </Snackbar>
       { modal && 
       <ReservationConfirmModal 
         modalHandler={modalHandler} 
         data={modalData} 
         accData={props.state}
-        handleSnackbar={handleOpen}
       /> }
       <form onSubmit={submitHandler} id="booking-container__content--form" action="submit">
         <ThemeProvider theme={theme}>
