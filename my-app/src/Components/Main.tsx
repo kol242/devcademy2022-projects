@@ -14,6 +14,7 @@ import AccommodationsByLocation from '../Pages/AccommodationsByLocation.tsx'
 import NewPlaceForm from './NewPlace/NewPlaceForm'
 import EditPlaceForm from './EditPlace/EditPlaceForm'
 import Login from '../Pages/Login'
+import PrivateRoute from './PrivateRoute'
 
 const Main = () => {
   return (
@@ -21,7 +22,9 @@ const Main = () => {
         <Navigation />
         <div className="main-layout__body">
           <Routes>
-            <Route path="/" element={<Home />} />
+            <Route path="/" element={<PrivateRoute/>}>
+              <Route path="/" element={<Home />} />
+            </Route>
             <Route path="/locations" element={<Locations />} />
             <Route path="/bookings" element={<MyBookings />} />
             <Route path="/places" element={<MyPlaces />} />

@@ -66,3 +66,14 @@
     /* Black and White/White */
     color: #FFFFFF;
 }
+
+#login-box__alert {
+    margin: 0;
+    color: red;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 150%;
+    letter-spacing: 0.15px;
+}
