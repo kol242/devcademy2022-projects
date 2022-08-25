@@ -2,43 +2,27 @@ import React, { useEffect, useState } from 'react'
 import '../Common/Style/my-bookings.css'
 import Reservations from '../Components/Bookings/Reservations'
 import { Reservation } from '../Common/Models/Reservation'
+import useHttp from '../Hooks/use-http'
 
 const MyBookings = () => {
   const [upcomingReservations, setUpcomingReservations] = useState<Reservation[]>([])
   const [pastReservations, setPastReservations] = useState<Reservation[]>([])
-
-  const fetchLocations = async () => {
-    try {
-      const response = await fetch('https://devcademy.herokuapp.com/api/Reservation')
-
-      if (!response.ok) {
-        throw new Error('Request failed!')
-      }
-
-      const data = await response.json()
-      const upcomingBookings: Reservation[] = []
-      const pastBookings: Reservation[] = []
-
-      for (const booking in data) {
-        if (new Date().toISOString() < data[booking].checkIn) {
-          upcomingBookings.push(data[booking])
-        } else {
-          pastBookings.push(data[booking])
-        }
-      }
-
-      setUpcomingReservations(upcomingBookings)
-      setPastReservations(pastBookings)
-
-    } catch (err) {
-      console.log(err)
-    }
-
-  }
+  const { fetchedData: reservations, sendRequest: fetchReservations } = useHttp()
 
   useEffect(() => {
-    fetchLocations()
-  }, [])
+    fetchReservations({url: 'https://devcademy.herokuapp.com/api/Reservation'})
+    const upcomingBookings: Reservation[] = []
+    const pastBookings: Reservation[] = []
+    for (const booking in reservations) {
+      if (new Date().toISOString() < reservations[booking].checkIn) {
+        upcomingBookings.push(reservations[booking])
+      } else {
+        pastBookings.push(reservations[booking])
+      }
+    }
+    setUpcomingReservations(upcomingBookings)
+    setPastReservations(pastBookings)
+  }, [fetchReservations, reservations])
 
   return (
     <div className="myBookings-container">

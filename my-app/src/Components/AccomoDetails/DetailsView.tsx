@@ -8,7 +8,7 @@ const DetailsView: React.FC<{ details: Accomodation }> = (props) => {
 
   const navigate = useNavigate()
   const send = () => {
-      navigate('/booking-flow', { state: props.details })
+      navigate('/reservation', { state: props.details })
   }
 
   return (

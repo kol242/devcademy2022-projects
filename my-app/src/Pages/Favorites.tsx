@@ -1,31 +1,17 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 import '../Common/Style/faovrites.css'
 import AccView from '../Components/AccomodationCard/AccView'
 import AdvancedSearch from '../Components/SearchForm/AdvancedSearch'
+import useHttp from '../Hooks/use-http'
 
 const Favorites = () => {
   const { state }: any = useLocation()
-  const [accomodations, setAccomodations] = useState([])
-
-  const fetchRecommendations = async () => {
-    try {
-      const response = await fetch('https://devcademy.herokuapp.com/api/Accomodations/recommendation')
-
-      if (!response.ok) {
-        throw new Error('Request failed!')
-      }
-
-      const data = await response.json()
-      setAccomodations(data)
-    } catch (err) {
-      console.log(err)
-    }
-  }
+  const {fetchedData: accomodations, sendRequest: fetchRecommendations } = useHttp()
 
   useEffect(() => {
-    fetchRecommendations()
-  }, [])
+    fetchRecommendations({ url: 'https://devcademy.herokuapp.com/api/Accomodations/recommendation' })
+  }, [fetchRecommendations])
 
   return (
     <div className="favorites-container">

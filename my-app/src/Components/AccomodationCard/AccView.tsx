@@ -7,7 +7,7 @@ const AccView: React.FC<{ data: Accomodation, class: string }> = (props) => {
 
     const navigate = useNavigate()
     const send = () => {
-        navigate('/accomodation-details', { state: props.data })
+        navigate(`/accomodations/${props.data.id}`, { state: props.data })
     }
 
     const imageStyle = {

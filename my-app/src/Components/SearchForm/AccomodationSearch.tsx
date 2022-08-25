@@ -46,7 +46,7 @@ const AccomodationSearch = () => {
       locationID: searchData.locationID,
       properties: searchData.properties
     }
-    navigate('/accomodation-by-location', { state: result })
+    navigate('/accomodations', { state: result })
   }
   
   return (

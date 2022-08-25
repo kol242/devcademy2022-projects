@@ -16,7 +16,7 @@ const MyPlaceDeleteModal: React.FC<{ modalHandler: any, data: any }> = (props) =
       url: `https://devcademy.herokuapp.com/api/Accomodations/${props.data}`,
       method: 'DELETE'
     })
-    navigate('/places', { state: refreshPage })
+    navigate('/my-places', { state: refreshPage })
     props.modalHandler()
   }
   

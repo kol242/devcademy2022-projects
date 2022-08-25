@@ -1,8 +1,9 @@
 import { Checkbox, FormControlLabel, TextField } from '@mui/material'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
-import React, { useRef } from 'react'
+import React, { useContext, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
 import '../Common/Style/login.css'
+import AuthContext from '../Store/auth-context'
 
 const theme = createTheme({
     palette: {
@@ -19,8 +20,10 @@ const Login = () => {
     const navigate = useNavigate()
     const [checked, setChecked] = React.useState(false)
     const [error, setError] = React.useState(false)
+    const authCtx = useContext(AuthContext)
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setChecked(event.target.checked)
+        if (event.target.checked) setError(false) 
     }
 
     const emailRef = useRef<HTMLInputElement>(null)
@@ -29,17 +32,18 @@ const Login = () => {
     const submitHandler = (event: React.FormEvent) => {
         event.preventDefault()
         const loginData = {
-            email: emailRef.current?.value,
+            email: emailRef.current?.value.toString(),
             password: passwordRef.current?.value,
+            loggedIn: true
         }
         if (!checked) {
             setError(true)  
         } else {
             setError(false)
-            console.log(loginData)
+            localStorage.setItem("userToken", JSON.stringify(loginData))
+            authCtx.login(loginData.email)
+            navigate('/')
         }
-        //localStorage.setItem("email", "test@mail.com")
-        navigate('/')
     }
   return (
     <div className="login-body">
@@ -68,7 +72,7 @@ const Login = () => {
             </ThemeProvider>
                 <div>
                     <FormControlLabel control={<Checkbox onChange={handleChange} />} label="I accept the Terms and Conditions" />
-                    { error && <p id="login-box__alert">Accept Terms and Conditions!</p>   } 
+                    { error && <p id="login-box__alert">Terms and Conditions must be accepted!</p>   } 
                 </div>                     
                 <button id="login-box__btn">log in</button>
             </form>

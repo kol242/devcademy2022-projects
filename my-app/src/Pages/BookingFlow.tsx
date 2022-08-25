@@ -2,19 +2,10 @@ import React from 'react'
 import { useLocation } from 'react-router-dom';
 import '../Common/Style/booking-flow.css'
 import BookingForm from '../Components/BookingForm/BookingForm'
-import RatingStar from '../Common/Images/star.svg'
+import Stars from '../Components/Stars'
 
 const BookingFlow = () => {
   const { state }: any = useLocation()
-
-  function createStar() {
-    const elements = []
-    const category = state.categorization
-    for(let i = 0; i < category; i++){
-    elements.push(<img key={i} id="acc-container__card--star" src={RatingStar} alt="ratingStar" />);
-    } 
-    return elements;
-  }
 
   const imageStyle = {
     background: `url(${state.imageUrl})`,
@@ -32,7 +23,7 @@ const BookingFlow = () => {
           <div id="card-section">
             <h1 id="card-section__title">{state.title}</h1>
             <div className="acc-container__card--rating card-stars">
-              { createStar() }
+              <Stars category={state.categorization}/>
             </div>
             <p id="card-section__description">{state.type}</p>
             <p id="card-section__description">{state.location?.name}</p>

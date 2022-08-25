@@ -46,6 +46,7 @@
 }
 
 #navbar-links__logout {
+    cursor: pointer;
     margin: 0;
     /* Button/Medium */
     font-family: 'Roboto';
