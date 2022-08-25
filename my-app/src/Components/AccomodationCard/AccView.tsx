@@ -11,7 +11,7 @@ const AccView: React.FC<{ data: Accomodation, class: string }> = (props) => {
     }
 
     const imageStyle = {
-        background: `linear-gradient(180deg, rgba(0, 0, 0, 0.3) 0%, rgba(255, 255, 255, 0) 100%), url(${props.data.imageUrl})`,
+        backgroundImage: `linear-gradient(180deg, rgba(0, 0, 0, 0.3) 0%, rgba(255, 255, 255, 0) 100%), url(${props.data.imageUrl})`,
         backgroundSize: 'cover',
         backgroundPosition: 'center'
     }

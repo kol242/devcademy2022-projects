@@ -1,4 +1,5 @@
 import React from 'react'
+import useCheckStorage from '../Hooks/use-checkStorage'
 
 const AuthContext = React.createContext({
     token: '',
@@ -8,17 +9,10 @@ const AuthContext = React.createContext({
 })
 
 export const AuthContextProvider = (props: any) => {
+
     const [token, setToken] = React.useState<any>()
-    const checkStorage = (key: any) => {
-        const storedData: any = localStorage.getItem(key)
-        if (storedData === null) {
-          return false
-        } else {
-          const parsedData = JSON.parse(storedData)
-          return parsedData.loggedIn  
-        }
-    }
-    const userIsLoggedIn = checkStorage('userToken')
+
+    const userIsLoggedIn = useCheckStorage('userToken')
 
     const loginHandler = (token: any) => {
         setToken(token)

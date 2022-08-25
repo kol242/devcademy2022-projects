@@ -28,6 +28,11 @@
     width: 412.75px;
     height: 295px;
     cursor: pointer;
+    transition: all 0.5s;
+}
+
+.locations-container__card:hover {
+    transform: scale(1.02)
 }
 
 .locations-container__card:nth-child(-n+2) {

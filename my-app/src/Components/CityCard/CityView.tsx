@@ -7,7 +7,7 @@ const CityView: React.FC<{ city: Place, class: string }> = (props) => {
   const navigate = useNavigate()
   const { fetchedData: accomodations, sendRequest: fetchAccomodations } = useHttp()
   const imageStyle = {
-    background: `linear-gradient(180deg, rgba(0, 0, 0, 0.3) 0%, rgba(255, 255, 255, 0) 100%), url(${props.city.imageUrl})`,
+    backgroundImage: `linear-gradient(180deg, rgba(0, 0, 0, 0.3) 0%, rgba(255, 255, 255, 0) 100%), url(${props.city.imageUrl})`,
     backgroundSize: 'cover',
     backgroundPosition: 'center',
   }

@@ -5,7 +5,7 @@ import Stars from '../Stars'
 const Reservations: React.FC<{ data: Reservation }> = (props) => {
 
   const imageStyle = {
-    background: `linear-gradient(180deg, rgba(0, 0, 0, 0.3) 0%, rgba(255, 255, 255, 0) 100%), url(${props.data.accomodation.imageUrl})`,
+    backgroundImage: `linear-gradient(180deg, rgba(0, 0, 0, 0.3) 0%, rgba(255, 255, 255, 0) 100%), url(${props.data.accomodation.imageUrl})`,
     backgroundSize: 'cover',
     backgroundPosition: 'center'
   }
