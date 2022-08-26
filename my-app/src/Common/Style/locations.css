@@ -31,6 +31,25 @@
     transition: all 0.5s;
 }
 
+@keyframes loading {
+    0% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.locations-container__card--loading {
+    width: 412.75px;
+    height: 295px;
+    border-radius: 12px;
+    color: transparent;
+    background: linear-gradient(100deg, #d6d8da 30%, #f6f7f8 50%, #d6d8da 70%);
+    background-size: 400%;
+    animation: loading 1s ease-in-out infinite;
+}
+
 .locations-container__card:hover {
     transform: scale(1.02)
 }

@@ -15,6 +15,7 @@ type Response = {
 const useHttp = () => {
     const [snackbarResponse, setSnackbarResponse] = useState<Response>()
     const [isSnackbarOpen, setIsSnackbarOpen] = useState(false)
+    const [isLoading, setIsLoading] = useState(false)
 
     const openSnackbar = (requestState: string) => {
         switch (requestState) {
@@ -53,8 +54,10 @@ const useHttp = () => {
     }
 
     const [fetchedData, setFetchedData] = useState<any>([])
-    const sendRequest = useCallback(async (requestConfig: ReqConfig) => {
+
+    const sendRequest = useCallback(async (requestConfig: ReqConfig, applyData?: any) => {
         try {
+            setIsLoading(true)
             const response = await fetch(requestConfig.url, {
                 method: requestConfig.method ? requestConfig.method : 'GET',
                 headers: requestConfig.headers ? requestConfig.headers : {},
@@ -62,11 +65,14 @@ const useHttp = () => {
             })
             if (!requestConfig.method) {
                 const data = await response.json()
+                applyData && applyData(data)
                 setFetchedData(data)    
             }
+            setIsLoading(false)
             openSnackbar('success')
         } catch (err) {
             console.log(err)
+            setIsLoading(false)
             openSnackbar('fail')
         }
     }, [])
@@ -77,7 +83,8 @@ const useHttp = () => {
         snackbarResponse,
         isSnackbarOpen,
         closeSnackbar,
-        openSnackbar
+        openSnackbar,
+        isLoading
     }
 }
 

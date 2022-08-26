@@ -19,14 +19,13 @@ const CityView: React.FC<{ city: Place, class: string }> = (props) => {
     return accomodations
   }
 
-  const result = {
-    filterData: data(props.city.id),
-    location: props.city.name,
-    locationID: props.city.id,
-    properties: props.city.properties
-  }
-
   const handleClick = () => {
+    const result = {
+      filterData: data(props.city.id),
+      location: props.city.name,
+      locationID: props.city.id,
+      properties: props.city.properties
+    }
     navigate("/accomodations", { state: result })
   }
 

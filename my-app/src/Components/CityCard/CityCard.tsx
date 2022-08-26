@@ -4,9 +4,10 @@ import CityView from './CityView'
 import { Link } from "react-router-dom";
 import Arrow from '../../Common/Images/Button/Vector.svg'
 import useHttp from '../../Hooks/use-http'
+import Loading from '../Loading'
 
 const CityCard = () => {
-  const { fetchedData: locations, sendRequest: fetchLocations } = useHttp()
+  const { fetchedData: locations, sendRequest: fetchLocations, isLoading } = useHttp()
 
   useEffect(() => {
     fetchLocations({ 
@@ -21,9 +22,11 @@ const CityCard = () => {
         <Link id="city-container__header--link" to="/locations">View all locations<img src={Arrow} alt="arrow" /></Link>  
       </div>
       <div className="city-container__body">
-        { locations.slice(0, 5).map((location: any, index: any) => 
+        { !isLoading ? locations.slice(0, 5).map((location: any, index: any) => 
           <CityView key={index} class='city-container__card' city={location}/>   
-        ) }
+        ) : 
+          <Loading class='city-container__card--loading' element={5}/>
+        }
       </div>
     </div>
   )
