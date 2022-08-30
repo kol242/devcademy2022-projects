@@ -9,6 +9,25 @@
     width: 412.75px;
 }
 
+@keyframes loading {
+    0% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.favorites-container__card--loading {
+    width: 412.75px;
+    height: 266px;
+    border-radius: 12px;
+    color: transparent;
+    background: linear-gradient(100deg, #d6d8da 30%, #f6f7f8 50%, #d6d8da 70%);
+    background-size: 400%;
+    animation: loading 1s ease-in-out infinite;
+}
+
 #favorites-container--title {
     margin: 0 0 16px 0;
     font-family: 'Roboto';

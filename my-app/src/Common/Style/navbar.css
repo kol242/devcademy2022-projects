@@ -1,5 +1,4 @@
 .navbar {
-    /* Auto layout */
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -47,6 +46,7 @@
 }
 
 #navbar-links__logout {
+    cursor: pointer;
     margin: 0;
     /* Button/Medium */
     font-family: 'Roboto';

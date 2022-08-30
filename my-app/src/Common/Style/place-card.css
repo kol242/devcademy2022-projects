@@ -1,6 +1,37 @@
+.place-body {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+}
+
 .place-container {
     display: flex;
     gap: 24px;
+}
+
+@keyframes loading {
+    0% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.place-container__card--loading {
+    width: 300px;
+    height: 266px;
+    border-radius: 12px;
+    color: transparent;
+    background: linear-gradient(100deg, #d6d8da 30%, #f6f7f8 50%, #d6d8da 70%);
+    background-size: 400%;
+    animation: loading 1s ease-in-out infinite;
+}
+
+#place-container__card--image {
+    width: 300px;
+    height: 266px;
+    border-radius: 12px;
 }
 
 #place-container__title {
@@ -58,6 +89,7 @@
 .place-container__card--btns {
     display: flex;
     gap: 28px;
+    margin-bottom: 20px;
 }
 
 #btns-edit {

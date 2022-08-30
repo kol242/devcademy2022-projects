@@ -6,7 +6,7 @@ import { useLocation } from 'react-router-dom';
 const AccomoDetails = () => {
   const { state }: any = useLocation()
   const imageStyle = {
-    background: `url(${state.image})`,
+    backgroundImage: `url(${state.imageUrl})`,
     backgroundSize: 'cover',
     backgroundPosition: 'center'
   }
